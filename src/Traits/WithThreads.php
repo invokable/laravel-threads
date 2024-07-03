@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Revolution\Threads\Traits;
 
 use Illuminate\Container\Container;

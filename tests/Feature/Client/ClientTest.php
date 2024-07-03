@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Feature\Client;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Http;
 use Revolution\Threads\Facades\Threads;
 use Revolution\Threads\ThreadsClient;
