@@ -1,0 +1,42 @@
+{
+  "name": "revolution/laravel-threads",
+  "description": "Laravel Threads API",
+  "keywords": [
+    "laravel",
+    "threads"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2",
+    "illuminate/support": "^11.0",
+    "guzzlehttp/guzzle": "^7.8"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Revolution\\Threads\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "kawax",
+      "email": "kawaxbiz@gmail.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Revolution\\Threads\\ThreadsServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}
