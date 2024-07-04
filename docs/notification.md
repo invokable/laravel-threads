@@ -34,6 +34,7 @@ The url must be a public url.
 ```
 
 ### With Video
+You can only notify one of the following: Text only, Text with image, or Text with video.
 
 ```php
     public function toThreads(object $notifiable): ThreadsMessage
