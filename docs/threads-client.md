@@ -3,6 +3,9 @@ ThreadsClient
 
 Basic client.
 
+## Token
+Tokens can be obtained on Socialite or through the Threads tester token generator tool.
+
 ## Post to Threads
 
 ### Text

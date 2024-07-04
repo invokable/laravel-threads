@@ -87,4 +87,3 @@ class SocialiteController extends Controller
                         ->redirect();
     }
 ```
-
