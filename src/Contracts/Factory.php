@@ -15,17 +15,17 @@ interface Factory
 
     public function single(string $id, ?array $fields = null): array;
 
-    public function publish(string $creation_id, int $sleep = 0): array;
+    public function publish(string $id, int $sleep = 0): array;
 
     public function createText(string $text): string;
 
-    public function createImage(string $image_url, ?string $text = null, bool $is_carousel = false): string;
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false): string;
 
-    public function createVideo(string $video_url, ?string $text = null, bool $is_carousel = false): string;
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false): string;
 
     public function createCarousel(array $children, ?string $text = null): string;
 
-    public function status(string $creation_id, ?array $fields = null): array;
+    public function status(string $id, ?array $fields = null): array;
 
     public function quota(?array $fields = null): array;
 

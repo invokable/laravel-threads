@@ -124,7 +124,7 @@ class ThreadsClient implements Factory
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function publish(string $creation_id, int $sleep = 0): array
+    public function publish(string $id, int $sleep = 0): array
     {
         if ($sleep > 0) {
             Sleep::sleep($sleep);
@@ -132,7 +132,7 @@ class ThreadsClient implements Factory
 
         $response = $this->http()
             ->post('me/threads_publish', [
-                'creation_id' => $creation_id,
+                'creation_id' => $id,
             ])->throw();
 
         return $response->json() ?? [];
@@ -163,12 +163,12 @@ class ThreadsClient implements Factory
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function createImage(string $image_url, ?string $text = null, bool $is_carousel = false): string
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false): string
     {
         $response = $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::IMAGE->name,
-                'image_url' => $image_url,
+                'image_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
             ])->throw();
@@ -183,12 +183,12 @@ class ThreadsClient implements Factory
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function createVideo(string $video_url, ?string $text = null, bool $is_carousel = false): string
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false): string
     {
         $response = $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::VIDEO->name,
-                'video_url' => $video_url,
+                'video_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
             ])->throw();
@@ -222,7 +222,7 @@ class ThreadsClient implements Factory
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function status(string $creation_id, ?array $fields = null): array
+    public function status(string $id, ?array $fields = null): array
     {
         $fields ??= [
             'status',
@@ -230,7 +230,7 @@ class ThreadsClient implements Factory
         ];
 
         $response = $this->http()
-            ->get($creation_id, [
+            ->get($id, [
                 'fields' => Arr::join($fields, ','),
             ])->throw();
 

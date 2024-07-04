@@ -24,7 +24,7 @@ use Revolution\Threads\Facades\Threads;
 
 Threads::token($token);
 
-$id = Threads::createImage(image_url: 'https://.../cat.png', text: 'test');
+$id = Threads::createImage(url: 'https://.../cat.png', text: 'test');
 Threads::publish($id)
 ```
 
@@ -34,7 +34,7 @@ use Revolution\Threads\Facades\Threads;
 
 Threads::token($token);
 
-$id = Threads::createVideo(image_url: 'https://.../dog.mov', text: 'test');
+$id = Threads::createVideo(url: 'https://.../dog.mov', text: 'test');
 Threads::publish($id)
 ```
 
@@ -44,8 +44,8 @@ use Revolution\Threads\Facades\Threads;
 
 Threads::token($token);
 
-$id1 = Threads::createImage(image_url: 'https://.../cat1.png', is_carousel: true);
-$id2 = Threads::createImage(image_url: 'https://.../cat2.png', is_carousel: true);
+$id1 = Threads::createImage(url: 'https://.../cat1.png', is_carousel: true);
+$id2 = Threads::createImage(url: 'https://.../cat2.png', is_carousel: true);
 $id = Threads::createCarousel(children: [$id1, $id2], text: 'test');
 Threads::publish($id)
 ```

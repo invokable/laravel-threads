@@ -87,7 +87,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $res = Threads::token('token')
-            ->status(creation_id: 'id');
+            ->status(id: 'id');
 
         $this->assertIsArray($res);
     }
