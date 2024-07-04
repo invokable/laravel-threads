@@ -29,5 +29,7 @@ interface Factory
 
     public function quota(?array $fields = null): array;
 
+    public function exchangeToken(string $short, string $secret): array;
+
     public function refreshToken(): array;
 }
