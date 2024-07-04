@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use Illuminate\Foundation\Application;
+use Laravel\Socialite\SocialiteServiceProvider;
 use Revolution\Threads\ThreadsServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -19,6 +20,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             ThreadsServiceProvider::class,
+            SocialiteServiceProvider::class,
         ];
     }
 
@@ -43,6 +45,12 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function defineEnvironment($app): void
     {
-        //
+        $app['config']->set('services.threads',
+            [
+                'client_id' => 'test',
+                'client_secret' => 'test',
+                'redirect' => 'http://localhost',
+            ],
+        );
     }
 }

@@ -3,14 +3,16 @@
   "description": "Laravel Threads API",
   "keywords": [
     "laravel",
-    "threads"
+    "threads",
+    "socialite"
   ],
   "type": "library",
   "license": "MIT",
   "require": {
     "php": "^8.2",
     "illuminate/support": "^11.0",
-    "guzzlehttp/guzzle": "^7.8"
+    "guzzlehttp/guzzle": "^7.8",
+    "laravel/socialite": "^5.0"
   },
   "require-dev": {
     "orchestra/testbench": "^9.0"
