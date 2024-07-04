@@ -1,5 +1,7 @@
 # Socialite driver for Threads
 
+I will remove this if Laravel officially supports Threads.
+
 ## Configuration
 
 ### config/services.php
