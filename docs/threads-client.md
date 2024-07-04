@@ -65,3 +65,43 @@ use Revolution\Threads\Facades\Threads;
 
 $post = Threads::token($token)->single(id: $id);
 ```
+
+## Macroable
+If you need other methods you can add any method using the macro feature.
+
+```php
+namespace App\Providers;
+
+use Illuminate\Support\Arr;
+use Illuminate\Support\ServiceProvider;
+use Revolution\Threads\Facades\Threads;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Threads::macro('userInsights', function (?array $metric = null): array {
+            $metric ??= [
+                'likes',
+                'replies',
+                'reposts',
+                'quotes',
+                'followers_count',
+            ];
+
+            $response = $this->http()
+                ->get('me/threads_insights', [
+                    'metric' => Arr::join($metric, ','),
+                ]);
+
+            return $response->json() ?? [];
+        });
+    }
+}
+```
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$insights = Threads::token($token)->userInsights();
+```
