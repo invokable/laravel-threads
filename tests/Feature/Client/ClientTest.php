@@ -104,6 +104,17 @@ class ClientTest extends TestCase
         $this->assertIsArray($res);
     }
 
+    public function test_exchange_token()
+    {
+        Http::fakeSequence()
+            ->push([])
+            ->whenEmpty(Http::response());
+
+        $res = Threads::exchangeToken('short', 'secret');
+
+        $this->assertIsArray($res);
+    }
+
     public function test_refresh_token()
     {
         Http::fakeSequence()

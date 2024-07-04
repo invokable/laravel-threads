@@ -271,6 +271,24 @@ class ThreadsClient implements Factory
     }
 
     /**
+     * Exchange short-lived token to long-lived token.
+     *
+     * @throws RequestException
+     */
+    public function exchangeToken(string $short_token, string $client_secret): array
+    {
+        $response = Http::get('https://graph.threads.net/access_token', [
+            'grant_type' => 'th_exchange_token',
+            'client_secret' => $client_secret,
+            'access_token' => $short_token,
+        ])->throw();
+
+        return $response->json() ?? [];
+    }
+
+    /**
+     * Refresh long-lived token.
+     *
      * @throws RequestException
      */
     public function refreshToken(): array
