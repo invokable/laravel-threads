@@ -20,6 +20,7 @@ I will remove this if Laravel officially supports Threads.
 ```php
 THREADS_CLIENT_ID=
 THREADS_CLIENT_SECRET=
+THREADS_REDIRECT_URL=/threads/callback
 ```
 
 ## Usage
