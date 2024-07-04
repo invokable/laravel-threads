@@ -21,7 +21,7 @@ use Revolution\Threads\ThreadsClient;
  * @method static string createCarousel(array $children, ?string $text = null)
  * @method static array status(string $creation_id, ?array $fields = null)
  * @method static array quota(?array $fields = null)
- * @method static array exchangeToken(string $short_token, string $client_secret)
+ * @method static array exchangeToken(string $short, string $secret)
  * @method static array refreshToken()
  * @method static void macro(string $name, object|callable $macro)
  * @method static static|mixed when(\Closure|mixed|null $value = null, callable|null $callback = null, callable|null $default = null)
