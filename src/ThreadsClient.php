@@ -275,12 +275,12 @@ class ThreadsClient implements Factory
      *
      * @throws RequestException
      */
-    public function exchangeToken(string $short_token, string $client_secret): array
+    public function exchangeToken(string $short, string $secret): array
     {
         $response = Http::get('https://graph.threads.net/access_token', [
             'grant_type' => 'th_exchange_token',
-            'client_secret' => $client_secret,
-            'access_token' => $short_token,
+            'client_secret' => $secret,
+            'access_token' => $short,
         ])->throw();
 
         return $response->json() ?? [];
