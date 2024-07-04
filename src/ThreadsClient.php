@@ -24,6 +24,22 @@ class ThreadsClient implements Factory
 
     protected string $base_url = 'https://graph.threads.net/v1.0/';
 
+    protected array $post_default_fields = [
+        'id',
+        'media_product_type',
+        'media_type',
+        'media_url',
+        'permalink',
+        'owner',
+        'username',
+        'text',
+        'timestamp',
+        'shortcode',
+        'thumbnail_url',
+        'children',
+        'is_quote_post',
+    ];
+
     public function token(string $token): static
     {
         $this->token = $token;
@@ -69,21 +85,7 @@ class ThreadsClient implements Factory
      */
     public function posts(int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array
     {
-        $fields ??= [
-            'id',
-            'media_product_type',
-            'media_type',
-            'media_url',
-            'permalink',
-            'owner',
-            'username',
-            'text',
-            'timestamp',
-            'shortcode',
-            'thumbnail_url',
-            'children',
-            'is_quote_post',
-        ];
+        $fields ??= $this->post_default_fields;
 
         $response = $this->http()
             ->get('me/threads', [
@@ -106,21 +108,7 @@ class ThreadsClient implements Factory
      */
     public function single(string $id, ?array $fields = null): array
     {
-        $fields ??= [
-            'id',
-            'media_product_type',
-            'media_type',
-            'media_url',
-            'permalink',
-            'owner',
-            'username',
-            'text',
-            'timestamp',
-            'shortcode',
-            'thumbnail_url',
-            'children',
-            'is_quote_post',
-        ];
+        $fields ??= $this->post_default_fields;
 
         $response = $this->http()
             ->get($id, [
