@@ -11,6 +11,7 @@ use Revolution\Threads\ThreadsClient;
 /**
  * @method static static token(string $token)
  * @method static static baseUrl(string $base_url)
+ * @method static static apiVersion(string $api_version)
  * @method static array profiles(?array $fields = null)
  * @method static array posts(int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null)
  * @method static array single(string $id, ?array $fields = null)

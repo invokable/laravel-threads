@@ -22,7 +22,9 @@ class ThreadsClient implements Factory
 
     protected string $token = '';
 
-    protected string $base_url = 'https://graph.threads.net/v1.0/';
+    protected string $base_url = 'https://graph.threads.net/';
+
+    protected string $api_version = 'v1.0';
 
     protected array $post_default_fields = [
         'id',
@@ -50,6 +52,13 @@ class ThreadsClient implements Factory
     public function baseUrl(string $base_url): static
     {
         $this->base_url = $base_url;
+
+        return $this;
+    }
+
+    public function apiVersion(string $api_version): static
+    {
+        $this->api_version = $api_version;
 
         return $this;
     }
@@ -262,14 +271,16 @@ class ThreadsClient implements Factory
      * Exchange short-lived token to long-lived token.
      *
      * @throws RequestException
+     * @throws ConnectionException
      */
     public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): array
     {
-        $response = Http::get('https://graph.threads.net/access_token', [
-            'grant_type' => 'th_exchange_token',
-            'client_secret' => $secret,
-            'access_token' => $short,
-        ])->throw();
+        $response = Http::baseUrl($this->base_url)
+            ->get('access_token', [
+                'grant_type' => 'th_exchange_token',
+                'client_secret' => $secret,
+                'access_token' => $short,
+            ])->throw();
 
         return $response->json() ?? [];
     }
@@ -278,20 +289,22 @@ class ThreadsClient implements Factory
      * Refresh long-lived token.
      *
      * @throws RequestException
+     * @throws ConnectionException
      */
     public function refreshToken(): array
     {
-        $response = Http::get('https://graph.threads.net/refresh_access_token', [
-            'grant_type' => 'th_refresh_token',
-            'access_token' => $this->token,
-        ])->throw();
+        $response = Http::baseUrl($this->base_url)
+            ->get('refresh_access_token', [
+                'grant_type' => 'th_refresh_token',
+                'access_token' => $this->token,
+            ])->throw();
 
         return $response->json() ?? [];
     }
 
     private function http(): PendingRequest
     {
-        return Http::baseUrl($this->base_url)
+        return Http::baseUrl($this->base_url.$this->api_version.'/')
             ->withToken($this->token);
     }
 }

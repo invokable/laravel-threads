@@ -9,6 +9,8 @@ interface Factory
 
     public function baseUrl(string $base_url): static;
 
+    public function apiVersion(string $api_version): static;
+
     public function profiles(?array $fields = null): array;
 
     public function posts(int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array;

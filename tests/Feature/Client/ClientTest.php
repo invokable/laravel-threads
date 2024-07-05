@@ -17,7 +17,7 @@ class ClientTest extends TestCase
     {
         $client = new ThreadsClient();
         $client->token('token')->when(true, function (ThreadsClient $client) {
-            return $client->baseUrl('url');
+            return $client->baseUrl('url')->apiVersion('v1.0');
         });
 
         $this->assertInstanceOf(ThreadsClient::class, $client);
