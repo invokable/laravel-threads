@@ -89,6 +89,7 @@ class ThreadsClient implements Factory
     /**
      * My posts.
      *
+     * @return array{data: array, paging: array}
      * @throws RequestException
      * @throws ConnectionException
      */
@@ -130,6 +131,7 @@ class ThreadsClient implements Factory
     /**
      * Publish Threads Media Container.
      *
+     * @return array{id: string}
      * @throws RequestException
      * @throws ConnectionException
      */
@@ -228,6 +230,7 @@ class ThreadsClient implements Factory
     /**
      * Publishing status.
      *
+     * @return array{status: string}
      * @throws RequestException
      * @throws ConnectionException
      */
@@ -270,6 +273,7 @@ class ThreadsClient implements Factory
     /**
      * Exchange short-lived token to long-lived token.
      *
+     * @return array{access_token: string}
      * @throws RequestException
      * @throws ConnectionException
      */
@@ -288,6 +292,7 @@ class ThreadsClient implements Factory
     /**
      * Refresh long-lived token.
      *
+     * @return array{access_token: string}
      * @throws RequestException
      * @throws ConnectionException
      */
