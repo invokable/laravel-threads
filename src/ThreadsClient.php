@@ -75,7 +75,7 @@ class ThreadsClient implements Factory
         $response = $this->http()
             ->get('me', [
                 'fields' => Arr::join($fields, ','),
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
@@ -92,7 +92,7 @@ class ThreadsClient implements Factory
                 'after' => $after,
                 'since' => $since,
                 'until' => $until,
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
@@ -104,7 +104,7 @@ class ThreadsClient implements Factory
         $response = $this->http()
             ->get($id, [
                 'fields' => Arr::join($fields, ','),
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
@@ -118,7 +118,7 @@ class ThreadsClient implements Factory
         $response = $this->http()
             ->post('me/threads_publish', [
                 'creation_id' => $id,
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
@@ -129,7 +129,7 @@ class ThreadsClient implements Factory
             ->post('me/threads', [
                 'media_type' => MediaType::TEXT->name,
                 'text' => $text,
-            ])->throw();
+            ]);
 
         return $response->json('id', '');
     }
@@ -142,7 +142,7 @@ class ThreadsClient implements Factory
                 'image_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
-            ])->throw();
+            ]);
 
         return $response->json('id', '');
     }
@@ -155,7 +155,7 @@ class ThreadsClient implements Factory
                 'video_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
-            ])->throw();
+            ]);
 
         return $response->json('id', '');
     }
@@ -167,7 +167,7 @@ class ThreadsClient implements Factory
                 'media_type' => MediaType::CAROUSEL->name,
                 'children' => Arr::join($children, ','),
                 'text' => $text,
-            ])->throw();
+            ]);
 
         return $response->json('id', '');
     }
@@ -182,7 +182,7 @@ class ThreadsClient implements Factory
         $response = $this->http()
             ->get($id, [
                 'fields' => Arr::join($fields, ','),
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
@@ -197,7 +197,7 @@ class ThreadsClient implements Factory
         $response = $this->http()
             ->get('me/threads_publishing_limit', [
                 'fields' => Arr::join($fields, ','),
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
@@ -209,7 +209,7 @@ class ThreadsClient implements Factory
                 'grant_type' => 'th_exchange_token',
                 'client_secret' => $secret,
                 'access_token' => $short,
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
@@ -220,7 +220,7 @@ class ThreadsClient implements Factory
             ->get('refresh_access_token', [
                 'grant_type' => 'th_refresh_token',
                 'access_token' => $this->token,
-            ])->throw();
+            ]);
 
         return $response->json() ?? [];
     }
