@@ -72,7 +72,7 @@ interface Factory
     /**
      * Publishing status.
      *
-     * @return array{status: string}
+     * @return array{status: string, id: string, error_message?: string}
      */
     public function status(string $id, ?array $fields = null): array;
 
