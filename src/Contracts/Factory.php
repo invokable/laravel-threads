@@ -16,6 +16,8 @@ interface Factory
 
     /**
      * My profiles.
+     *
+     * @return array{id: string, username: string, threads_profile_picture_url: string, threads_biography: string}
      */
     public function profiles(string $user = 'me', ?array $fields = null): array;
 
