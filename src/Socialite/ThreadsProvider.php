@@ -53,7 +53,7 @@ class ThreadsProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getUserByToken($token)
+    protected function getUserByToken(#[\SensitiveParameter] $token)
     {
         $response = $this->getHttpClient()
             ->get($this->endpoint.'v1.0/me', [

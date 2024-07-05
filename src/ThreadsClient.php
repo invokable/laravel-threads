@@ -40,7 +40,7 @@ class ThreadsClient implements Factory
         'is_quote_post',
     ];
 
-    public function token(string $token): static
+    public function token(#[\SensitiveParameter] string $token): static
     {
         $this->token = $token;
 
@@ -263,7 +263,7 @@ class ThreadsClient implements Factory
      *
      * @throws RequestException
      */
-    public function exchangeToken(string $short, string $secret): array
+    public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): array
     {
         $response = Http::get('https://graph.threads.net/access_token', [
             'grant_type' => 'th_exchange_token',
