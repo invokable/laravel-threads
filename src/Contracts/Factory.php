@@ -24,12 +24,14 @@ interface Factory
     /**
      * My posts.
      *
-     * @return array{data: array, paging: array}
+     * @return array{data: array<array-key, string>, paging: array}
      */
     public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array;
 
     /**
      * Get Single Threads Media.
+     *
+     * @return array<array-key, string>
      */
     public function single(string $id, ?array $fields = null): array;
 
@@ -78,6 +80,8 @@ interface Factory
 
     /**
      * Publishing Quota Limit.
+     *
+     * @return array{data: array}
      */
     public function quota(string $user = 'me', ?array $fields = null): array;
 
