@@ -8,7 +8,7 @@ use Illuminate\Http\Client\RequestException;
 
 interface Factory
 {
-    public function token(string $token): static;
+    public function token(#[\SensitiveParameter] string $token): static;
 
     public function baseUrl(string $base_url): static;
 
@@ -109,7 +109,7 @@ interface Factory
      * @throws RequestException
      * @throws ConnectionException
      */
-    public function exchangeToken(string $short, string $secret): array;
+    public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): array;
 
     /**
      * Refresh long-lived token.
