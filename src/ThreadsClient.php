@@ -63,7 +63,7 @@ class ThreadsClient implements Factory
         return $this;
     }
 
-    public function profiles(?array $fields = null): array
+    public function profiles(string $user = 'me', ?array $fields = null): array
     {
         $fields ??= [
             'id',
@@ -73,19 +73,19 @@ class ThreadsClient implements Factory
         ];
 
         $response = $this->http()
-            ->get('me', [
+            ->get($user, [
                 'fields' => Arr::join($fields, ','),
             ]);
 
         return $response->json() ?? [];
     }
 
-    public function posts(int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array
+    public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array
     {
         $fields ??= $this->post_default_fields;
 
         $response = $this->http()
-            ->get('me/threads', [
+            ->get($user.'/threads', [
                 'fields' => Arr::join($fields, ','),
                 'limit' => $limit,
                 'before' => $before,
@@ -187,7 +187,7 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    public function quota(?array $fields = null): array
+    public function quota(string $user = 'me', ?array $fields = null): array
     {
         $fields ??= [
             'quota_usage',
@@ -195,7 +195,7 @@ class ThreadsClient implements Factory
         ];
 
         $response = $this->http()
-            ->get('me/threads_publishing_limit', [
+            ->get($user.'/threads_publishing_limit', [
                 'fields' => Arr::join($fields, ','),
             ]);
 

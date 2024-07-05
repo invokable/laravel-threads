@@ -17,14 +17,14 @@ interface Factory
     /**
      * My profiles.
      */
-    public function profiles(?array $fields = null): array;
+    public function profiles(string $user = 'me', ?array $fields = null): array;
 
     /**
      * My posts.
      *
      * @return array{data: array, paging: array}
      */
-    public function posts(int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array;
+    public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array;
 
     /**
      * Get Single Threads Media.
@@ -77,7 +77,7 @@ interface Factory
     /**
      * Publishing Quota Limit.
      */
-    public function quota(?array $fields = null): array;
+    public function quota(string $user = 'me', ?array $fields = null): array;
 
     /**
      * Exchange short-lived token to long-lived token.
