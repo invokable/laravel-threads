@@ -26,7 +26,7 @@ class ClientTest extends TestCase
     public function test_profiles()
     {
         Http::fakeSequence()
-            ->push([], 200)
+            ->push([])
             ->whenEmpty(Http::response());
 
         $profiles = Threads::token('token')->profiles();
@@ -37,7 +37,7 @@ class ClientTest extends TestCase
     public function test_posts()
     {
         Http::fakeSequence()
-            ->push([], 200)
+            ->push([])
             ->whenEmpty(Http::response());
 
         $posts = Threads::token('token')->posts(limit: 1);
@@ -48,7 +48,7 @@ class ClientTest extends TestCase
     public function test_single()
     {
         Http::fakeSequence()
-            ->push([], 200)
+            ->push([])
             ->whenEmpty(Http::response());
 
         $post = Threads::token('token')->single(id: 'id');
