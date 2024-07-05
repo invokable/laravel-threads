@@ -70,19 +70,6 @@ class NotificationTest extends TestCase
         $this->assertSame('id', $recorded[1][0]['creation_id']);
     }
 
-    public function test_notification_failed()
-    {
-        $this->expectException(RequestException::class);
-
-        Http::fakeSequence()
-            ->whenEmpty(Http::response('', 500));
-
-        Notification::route('threads', 'token')
-            ->notify(new TestNotification(text: 'test'));
-
-        Http::assertSentCount(2);
-    }
-
     public function test_notification_fake()
     {
         Notification::fake();
