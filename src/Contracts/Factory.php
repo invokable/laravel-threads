@@ -16,9 +16,6 @@ interface Factory
 
     /**
      * My profiles.
-     *
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function profiles(?array $fields = null): array;
 
@@ -26,16 +23,11 @@ interface Factory
      * My posts.
      *
      * @return array{data: array, paging: array}
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function posts(int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array;
 
     /**
      * Get Single Threads Media.
-     *
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function single(string $id, ?array $fields = null): array;
 
@@ -43,8 +35,6 @@ interface Factory
      * Publish Threads Media Container.
      *
      * @return array{id: string}
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function publish(string $id, int $sleep = 0): array;
 
@@ -52,8 +42,6 @@ interface Factory
      * Create Text Container.
      *
      * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function createText(string $text): string;
 
@@ -61,8 +49,6 @@ interface Factory
      * Create Image Container.
      *
      * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function createImage(string $url, ?string $text = null, bool $is_carousel = false): string;
 
@@ -70,8 +56,6 @@ interface Factory
      * Create Video Container.
      *
      * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function createVideo(string $url, ?string $text = null, bool $is_carousel = false): string;
 
@@ -80,8 +64,6 @@ interface Factory
      *
      * @param  array  $children Container IDs
      * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function createCarousel(array $children, ?string $text = null): string;
 
@@ -89,16 +71,11 @@ interface Factory
      * Publishing status.
      *
      * @return array{status: string}
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function status(string $id, ?array $fields = null): array;
 
     /**
      * Publishing Quota Limit.
-     *
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function quota(?array $fields = null): array;
 
@@ -106,8 +83,6 @@ interface Factory
      * Exchange short-lived token to long-lived token.
      *
      * @return array{access_token: string}
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): array;
 
@@ -115,8 +90,6 @@ interface Factory
      * Refresh long-lived token.
      *
      * @return array{access_token: string}
-     * @throws RequestException
-     * @throws ConnectionException
      */
     public function refreshToken(): array;
 }
