@@ -63,12 +63,6 @@ class ThreadsClient implements Factory
         return $this;
     }
 
-    /**
-     * My profiles.
-     *
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function profiles(?array $fields = null): array
     {
         $fields ??= [
@@ -86,13 +80,6 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    /**
-     * My posts.
-     *
-     * @return array{data: array, paging: array}
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function posts(int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array
     {
         $fields ??= $this->post_default_fields;
@@ -110,12 +97,6 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    /**
-     * Get Single Threads Media.
-     *
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function single(string $id, ?array $fields = null): array
     {
         $fields ??= $this->post_default_fields;
@@ -128,13 +109,6 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    /**
-     * Publish Threads Media Container.
-     *
-     * @return array{id: string}
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function publish(string $id, int $sleep = 0): array
     {
         if ($sleep > 0) {
@@ -149,13 +123,6 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    /**
-     * Create Text Container.
-     *
-     * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function createText(string $text): string
     {
         $response = $this->http()
@@ -167,13 +134,6 @@ class ThreadsClient implements Factory
         return $response->json('id', '');
     }
 
-    /**
-     * Create Image Container.
-     *
-     * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function createImage(string $url, ?string $text = null, bool $is_carousel = false): string
     {
         $response = $this->http()
@@ -187,13 +147,6 @@ class ThreadsClient implements Factory
         return $response->json('id', '');
     }
 
-    /**
-     * Create Video Container.
-     *
-     * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function createVideo(string $url, ?string $text = null, bool $is_carousel = false): string
     {
         $response = $this->http()
@@ -207,14 +160,6 @@ class ThreadsClient implements Factory
         return $response->json('id', '');
     }
 
-    /**
-     * Create Carousel Container.
-     *
-     * @param  array  $children Container IDs
-     * @return string Threads Media Container ID
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function createCarousel(array $children, ?string $text = null): string
     {
         $response = $this->http()
@@ -227,13 +172,6 @@ class ThreadsClient implements Factory
         return $response->json('id', '');
     }
 
-    /**
-     * Publishing status.
-     *
-     * @return array{status: string}
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function status(string $id, ?array $fields = null): array
     {
         $fields ??= [
@@ -249,12 +187,6 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    /**
-     * Publishing Quota Limit.
-     *
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function quota(?array $fields = null): array
     {
         $fields ??= [
@@ -270,13 +202,6 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    /**
-     * Exchange short-lived token to long-lived token.
-     *
-     * @return array{access_token: string}
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): array
     {
         $response = Http::baseUrl($this->base_url)
@@ -289,13 +214,6 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    /**
-     * Refresh long-lived token.
-     *
-     * @return array{access_token: string}
-     * @throws RequestException
-     * @throws ConnectionException
-     */
     public function refreshToken(): array
     {
         $response = Http::baseUrl($this->base_url)
