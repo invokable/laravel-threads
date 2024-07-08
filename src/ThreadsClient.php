@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Revolution\Threads;
 
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Sleep;
@@ -15,7 +13,7 @@ use Illuminate\Support\Traits\Macroable;
 use Revolution\Threads\Contracts\Factory;
 use Revolution\Threads\Enums\MediaType;
 
-class ThreadsClient implements Factory
+final class ThreadsClient implements Factory
 {
     use Macroable;
     use Conditionable;
@@ -26,7 +24,7 @@ class ThreadsClient implements Factory
 
     protected string $api_version = 'v1.0';
 
-    protected array $post_default_fields = [
+    protected const POST_DEFAULT_FIELDS = [
         'id',
         'media_product_type',
         'media_type',
@@ -82,7 +80,7 @@ class ThreadsClient implements Factory
 
     public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array
     {
-        $fields ??= $this->post_default_fields;
+        $fields ??= self::POST_DEFAULT_FIELDS;
 
         $response = $this->http()
             ->get($user.'/threads', [
@@ -99,7 +97,7 @@ class ThreadsClient implements Factory
 
     public function single(string $id, ?array $fields = null): array
     {
-        $fields ??= $this->post_default_fields;
+        $fields ??= self::POST_DEFAULT_FIELDS;
 
         $response = $this->http()
             ->get($id, [
