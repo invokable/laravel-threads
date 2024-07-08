@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Revolution\Threads\Contracts;
 
+use Revolution\Threads\Enums\ReplyControl;
+
 interface Factory
 {
     public function token(#[\SensitiveParameter] string $token): static;
@@ -44,21 +46,21 @@ interface Factory
      *
      * @return string Threads Media Container ID
      */
-    public function createText(string $text): string;
+    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
 
     /**
      * Create Image Container.
      *
      * @return string Threads Media Container ID
      */
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false): string;
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
 
     /**
      * Create Video Container.
      *
      * @return string Threads Media Container ID
      */
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false): string;
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
 
     /**
      * Create Carousel Container.
@@ -66,7 +68,7 @@ interface Factory
      * @param  array  $children Container IDs
      * @return string Threads Media Container ID
      */
-    public function createCarousel(array $children, ?string $text = null): string;
+    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
 
     /**
      * Publishing status.

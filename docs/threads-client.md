@@ -18,6 +18,17 @@ $id = Threads::createText('test');
 Threads::publish($id)
 ```
 
+### Reply Control
+```php
+use Revolution\Threads\Facades\Threads;
+use Revolution\Threads\Enums\ReplyControl;
+
+Threads::token($token);
+
+$id = Threads::createText(text: 'test', reply_control: ReplyControl::FOLLOW);
+Threads::publish($id)
+```
+
 ### Image
 ```php
 use Revolution\Threads\Facades\Threads;

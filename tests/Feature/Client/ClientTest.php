@@ -6,6 +6,7 @@ namespace Tests\Feature\Client;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use Revolution\Threads\Enums\ReplyControl;
 use Revolution\Threads\Facades\Threads;
 use Revolution\Threads\ThreadsClient;
 use Revolution\Threads\Traits\WithThreads;
@@ -63,7 +64,31 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createText(text: 'test');
+            ->createText(text: 'test', reply_control: ReplyControl::EVERYONE, reply_to_id: '1');
+
+        $this->assertSame('test', $id);
+    }
+
+    public function test_create_image()
+    {
+        Http::fakeSequence()
+            ->push(['id' => 'test'])
+            ->whenEmpty(Http::response());
+
+        $id = Threads::token('token')
+            ->createImage(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1');
+
+        $this->assertSame('test', $id);
+    }
+
+    public function test_create_video()
+    {
+        Http::fakeSequence()
+            ->push(['id' => 'test'])
+            ->whenEmpty(Http::response());
+
+        $id = Threads::token('token')
+            ->createVideo(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1');
 
         $this->assertSame('test', $id);
     }
@@ -75,7 +100,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createCarousel(children: []);
+            ->createCarousel(children: [], reply_control: ReplyControl::FOLLOW, reply_to_id: '1');
 
         $this->assertSame('test', $id);
     }

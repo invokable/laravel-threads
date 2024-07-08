@@ -12,6 +12,7 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Revolution\Threads\Contracts\Factory;
 use Revolution\Threads\Enums\MediaType;
+use Revolution\Threads\Enums\ReplyControl;
 
 class ThreadsClient implements Factory
 {
@@ -121,18 +122,20 @@ class ThreadsClient implements Factory
         return $response->json() ?? [];
     }
 
-    public function createText(string $text): string
+    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
     {
         $response = $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::TEXT->name,
                 'text' => $text,
+                'reply_to_id' => $reply_to_id,
+                'reply_control' => $reply_control?->value,
             ]);
 
         return $response->json('id', '');
     }
 
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false): string
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
     {
         $response = $this->http()
             ->post('me/threads', [
@@ -140,12 +143,14 @@ class ThreadsClient implements Factory
                 'image_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
+                'reply_to_id' => $reply_to_id,
+                'reply_control' => $reply_control?->value,
             ]);
 
         return $response->json('id', '');
     }
 
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false): string
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
     {
         $response = $this->http()
             ->post('me/threads', [
@@ -153,18 +158,22 @@ class ThreadsClient implements Factory
                 'video_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
+                'reply_to_id' => $reply_to_id,
+                'reply_control' => $reply_control?->value,
             ]);
 
         return $response->json('id', '');
     }
 
-    public function createCarousel(array $children, ?string $text = null): string
+    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
     {
         $response = $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::CAROUSEL->name,
                 'children' => Arr::join($children, ','),
                 'text' => $text,
+                'reply_to_id' => $reply_to_id,
+                'reply_control' => $reply_control?->value,
             ]);
 
         return $response->json('id', '');
