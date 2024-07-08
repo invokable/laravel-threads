@@ -6,7 +6,7 @@ namespace Revolution\Threads\Notifications;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-class ThreadsMessage implements Arrayable
+final class ThreadsMessage implements Arrayable
 {
     public ?string $image_url = null;
     public ?string $video_url = null;
