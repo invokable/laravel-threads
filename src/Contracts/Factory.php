@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace Revolution\Threads\Contracts;
 
-use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Http\Client\RequestException;
-
 interface Factory
 {
     public function token(#[\SensitiveParameter] string $token): static;
