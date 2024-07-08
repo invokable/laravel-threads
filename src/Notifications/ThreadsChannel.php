@@ -7,7 +7,7 @@ namespace Revolution\Threads\Notifications;
 use Illuminate\Notifications\Notification;
 use Revolution\Threads\Facades\Threads;
 
-final class ThreadsChannel
+class ThreadsChannel
 {
     public function send(mixed $notifiable, Notification $notification): void
     {
