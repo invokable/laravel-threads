@@ -56,6 +56,14 @@ Threads::publish($id)
 use Revolution\Threads\Facades\Threads;
 
 $posts = Threads::token($token)->posts(limit: 30);
+//[
+//    'data' => [
+//
+//    ],
+//    'paging' => [
+//
+//    ],
+//]
 ```
 
 ## Get single post
@@ -64,6 +72,11 @@ $posts = Threads::token($token)->posts(limit: 30);
 use Revolution\Threads\Facades\Threads;
 
 $post = Threads::token($token)->single(id: $id);
+//[
+//    'id' => '',
+//    'text' => 'Hello World',
+//    '...' => '...',
+//]
 ```
 
 ## Macroable
