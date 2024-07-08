@@ -13,7 +13,7 @@ use Illuminate\Support\Traits\Macroable;
 use Revolution\Threads\Contracts\Factory;
 use Revolution\Threads\Enums\MediaType;
 
-final class ThreadsClient implements Factory
+class ThreadsClient implements Factory
 {
     use Macroable;
     use Conditionable;
