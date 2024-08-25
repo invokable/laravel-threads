@@ -14,7 +14,7 @@ class ThreadsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(Factory::class, ThreadsClient::class);
+        $this->app->scoped(Factory::class, ThreadsClient::class);
     }
 
     public function boot(): void
