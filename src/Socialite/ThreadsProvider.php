@@ -61,7 +61,7 @@ class ThreadsProvider extends AbstractProvider implements ProviderInterface
                     'Authorization' => 'Bearer '.$token,
                 ],
                 RequestOptions::QUERY => [
-                    'fields' => 'id,username,threads_profile_picture_url,threads_biography',
+                    'fields' => 'id,username,name,threads_profile_picture_url,threads_biography',
                 ],
             ]);
 
