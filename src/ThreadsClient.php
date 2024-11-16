@@ -40,7 +40,14 @@ class ThreadsClient implements Factory
         'thumbnail_url',
         'children',
         'is_quote_post',
+        'alt_text',
         'link_attachment_url',
+        'has_replies',
+        'is_reply',
+        'is_reply_owned_by_me',
+        'root_post', 'replied_to',
+        'hide_status',
+        'reply_audience',
     ];
 
     public function token(#[\SensitiveParameter] string $token): static
@@ -129,7 +136,7 @@ class ThreadsClient implements Factory
             ]);
     }
 
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null): Response
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null): Response
     {
         return $this->http()
             ->post('me/threads', [
@@ -143,7 +150,7 @@ class ThreadsClient implements Factory
             ]);
     }
 
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null): Response
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null): Response
     {
         return $this->http()
             ->post('me/threads', [
