@@ -23,13 +23,17 @@ class ThreadsChannel
         Threads::token($token);
 
         if (filled($message->video_url)) {
-            $id = Threads::createVideo($message->video_url, $message->text)->json('id', '');
+            $response = Threads::createVideo($message->video_url, $message->text);
         } elseif (filled($message->image_url)) {
-            $id = Threads::createImage($message->image_url, $message->text)->json('id', '');
+            $response = Threads::createImage($message->image_url, $message->text);
         } else {
-            $id = Threads::createText($message->text)->json('id', '');
+            $response = Threads::createText($message->text);
         }
 
-        Threads::publish($id, $message->sleep);
+        if ($response->failed()) {
+            return;
+        }
+
+        Threads::publish($response->json('id', ''), $message->sleep);
     }
 }
