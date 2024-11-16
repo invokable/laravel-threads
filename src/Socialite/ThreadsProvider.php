@@ -74,10 +74,11 @@ class ThreadsProvider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user): User
     {
         return (new User())->setRaw($user)->map([
-            'id' => Arr::get($user, 'id'),
-            'nickname' => Arr::get($user, 'username'),
-            'name' => Arr::get($user, 'username'),
-            'avatar' => Arr::get($user, 'threads_profile_picture_url'),
+            'id' => Arr::get($user, 'id'),// Threads user ID. This is returned by default.
+            'nickname' => Arr::get($user, 'username'),// Handle or unique username on Threads.
+            'name' => Arr::get($user, 'name'),// Display name of the user on Threads.
+            'avatar' => Arr::get($user, 'threads_profile_picture_url'),// URL of the user's profile picture on Threads.
+            'threads_biography' => Arr::get($user, 'threads_biography'),// Biography text on Threads profile.
         ]);
     }
 }
