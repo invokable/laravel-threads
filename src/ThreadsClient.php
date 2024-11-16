@@ -138,23 +138,23 @@ class ThreadsClient implements Factory
             ]);
     }
 
-    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $link_attachment = null, ?string $quote_post_id = null): Response
+    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $link_attachment = null, ?string $quote_post_id = null, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', [
+            ->post('me/threads', array_merge([
                 'media_type' => MediaType::TEXT->name,
                 'text' => $text,
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
                 'link_attachment' => $link_attachment,
                 'quote_post_id' => $quote_post_id,
-            ]);
+            ], $options));
     }
 
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null): Response
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', [
+            ->post('me/threads', array_merge([
                 'media_type' => MediaType::IMAGE->name,
                 'image_url' => $url,
                 'text' => $text,
@@ -162,13 +162,13 @@ class ThreadsClient implements Factory
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
                 'quote_post_id' => $quote_post_id,
-            ]);
+            ], $options));
     }
 
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null): Response
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', [
+            ->post('me/threads', array_merge([
                 'media_type' => MediaType::VIDEO->name,
                 'video_url' => $url,
                 'text' => $text,
@@ -176,20 +176,20 @@ class ThreadsClient implements Factory
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
                 'quote_post_id' => $quote_post_id,
-            ]);
+            ], $options));
     }
 
-    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null): Response
+    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', [
+            ->post('me/threads', array_merge([
                 'media_type' => MediaType::CAROUSEL->name,
                 'children' => Arr::join($children, ','),
                 'text' => $text,
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
                 'quote_post_id' => $quote_post_id,
-            ]);
+            ], $options));
     }
 
     public function repost(string $id): Response
