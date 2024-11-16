@@ -40,6 +40,7 @@ class ThreadsClient implements Factory
         'thumbnail_url',
         'children',
         'is_quote_post',
+        'link_attachment_url',
     ];
 
     public function token(#[\SensitiveParameter] string $token): static
@@ -115,7 +116,7 @@ class ThreadsClient implements Factory
             ]);
     }
 
-    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
+    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $link_attachment = null): Response
     {
         return $this->http()
             ->post('me/threads', [
@@ -123,6 +124,7 @@ class ThreadsClient implements Factory
                 'text' => $text,
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
+                'link_attachment' => $link_attachment,
             ]);
     }
 
