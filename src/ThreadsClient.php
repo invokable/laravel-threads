@@ -111,6 +111,21 @@ class ThreadsClient implements Factory
             ]);
     }
 
+    public function replies(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): Response
+    {
+        $fields ??= self::POST_DEFAULT_FIELDS;
+
+        return $this->http()
+            ->get($user.'/replies', [
+                'fields' => Arr::join($fields, ','),
+                'limit' => $limit,
+                'before' => $before,
+                'after' => $after,
+                'since' => $since,
+                'until' => $until,
+            ]);
+    }
+
     public function publish(string $id, int $sleep = 0): Response
     {
         if ($sleep > 0) {
