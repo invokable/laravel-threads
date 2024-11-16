@@ -166,6 +166,12 @@ class ThreadsClient implements Factory
             ]);
     }
 
+    public function repost(string $id): Response
+    {
+        return $this->http()
+            ->post($id.'/repost');
+    }
+
     public function status(string $id, ?array $fields = null): Response
     {
         $fields ??= [
