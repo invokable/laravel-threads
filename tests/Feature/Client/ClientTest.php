@@ -64,7 +64,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createText(text: 'test', reply_control: ReplyControl::EVERYONE, reply_to_id: '1')
+            ->createText(text: 'test', reply_control: ReplyControl::EVERYONE, reply_to_id: '1', options: [])
             ->json('id');
 
         $this->assertSame('test', $id);
