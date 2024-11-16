@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Revolution\Threads\Contracts;
 
+use Illuminate\Http\Client\Response;
 use Revolution\Threads\Enums\ReplyControl;
 
 interface Factory
@@ -16,85 +17,85 @@ interface Factory
     /**
      * My profiles.
      *
-     * @return array{id: string, username: string, threads_profile_picture_url: string, threads_biography: string}
+     * @return Response{id: string, username: string, threads_profile_picture_url: string, threads_biography: string}
      */
-    public function profiles(string $user = 'me', ?array $fields = null): array;
+    public function profiles(string $user = 'me', ?array $fields = null): Response;
 
     /**
      * My posts.
      *
-     * @return array{data: array<array-key, string>, paging: array}
+     * @return Response{data: array<array-key, string>, paging: array}
      */
-    public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array;
+    public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): Response;
 
     /**
      * Get Single Threads Media.
      *
-     * @return array<array-key, string>
+     * @return Response<array-key, string>
      */
-    public function single(string $id, ?array $fields = null): array;
+    public function single(string $id, ?array $fields = null): Response;
 
     /**
      * Publish Threads Media Container.
      *
-     * @return array{id: string}
+     * @return Response{id: string}
      */
-    public function publish(string $id, int $sleep = 0): array;
+    public function publish(string $id, int $sleep = 0): Response;
 
     /**
      * Create Text Container.
      *
-     * @return string Threads Media Container ID
+     * @return Response{id: string} Threads Media Container ID
      */
-    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
+    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response;
 
     /**
      * Create Image Container.
      *
-     * @return string Threads Media Container ID
+     * @return Response{id: string} Threads Media Container ID
      */
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response;
 
     /**
      * Create Video Container.
      *
-     * @return string Threads Media Container ID
+     * @return Response{id: string} Threads Media Container ID
      */
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response;
 
     /**
      * Create Carousel Container.
      *
-     * @param  array  $children Container IDs
-     * @return string Threads Media Container ID
+     * @param  array  $children  Container IDs
+     * @return Response{id: string} Threads Media Container ID
      */
-    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string;
+    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response;
 
     /**
      * Publishing status.
      *
-     * @return array{status: string, id: string, error_message?: string}
+     * @return Response{status: string, id: string, error_message?: string}
      */
-    public function status(string $id, ?array $fields = null): array;
+    public function status(string $id, ?array $fields = null): Response;
 
     /**
      * Publishing Quota Limit.
      *
-     * @return array{data: array}
+     * @return Response{data: array}
      */
-    public function quota(string $user = 'me', ?array $fields = null): array;
+    public function quota(string $user = 'me', ?array $fields = null): Response;
 
     /**
      * Exchange short-lived token to long-lived token.
      *
-     * @return array{access_token: string}
+     * @return Response{access_token: string}
      */
-    public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): array;
+    public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): Response;
 
     /**
      * Refresh long-lived token.
      *
-     * @return array{access_token: string}
+     * @return Response{access_token: string}
      */
-    public function refreshToken(): array;
+    public function refreshToken(): Response;
 }

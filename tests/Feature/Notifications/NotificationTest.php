@@ -16,6 +16,13 @@ use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Http::preventStrayRequests();
+    }
+
     public function test_notification_text()
     {
         Http::fakeSequence()
@@ -106,7 +113,7 @@ class NotificationTest extends TestCase
 
     public function test_user_notify()
     {
-        Http::fake();
+        Http::fake(fn () => Http::response(['id' => 'id']));
 
         $user = new TestUser();
 

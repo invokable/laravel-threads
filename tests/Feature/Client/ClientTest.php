@@ -30,7 +30,7 @@ class ClientTest extends TestCase
             ->push([])
             ->whenEmpty(Http::response());
 
-        $profiles = Threads::token('token')->profiles();
+        $profiles = Threads::token('token')->profiles()->json();
 
         $this->assertIsArray($profiles);
     }
@@ -41,7 +41,7 @@ class ClientTest extends TestCase
             ->push([])
             ->whenEmpty(Http::response());
 
-        $posts = Threads::token('token')->posts(limit: 1);
+        $posts = Threads::token('token')->posts(limit: 1)->json();
 
         $this->assertIsArray($posts);
     }
@@ -52,7 +52,7 @@ class ClientTest extends TestCase
             ->push([])
             ->whenEmpty(Http::response());
 
-        $post = Threads::token('token')->single(id: 'id');
+        $post = Threads::token('token')->single(id: 'id')->json();
 
         $this->assertIsArray($post);
     }
@@ -64,7 +64,8 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createText(text: 'test', reply_control: ReplyControl::EVERYONE, reply_to_id: '1');
+            ->createText(text: 'test', reply_control: ReplyControl::EVERYONE, reply_to_id: '1')
+            ->json('id');
 
         $this->assertSame('test', $id);
     }
@@ -76,7 +77,8 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createImage(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1');
+            ->createImage(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1')
+            ->json('id');
 
         $this->assertSame('test', $id);
     }
@@ -88,7 +90,8 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createVideo(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1');
+            ->createVideo(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1')
+            ->json('id');
 
         $this->assertSame('test', $id);
     }
@@ -100,7 +103,8 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createCarousel(children: [], reply_control: ReplyControl::FOLLOW, reply_to_id: '1');
+            ->createCarousel(children: [], reply_control: ReplyControl::FOLLOW, reply_to_id: '1')
+            ->json('id');
 
         $this->assertSame('test', $id);
     }
@@ -112,7 +116,8 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $res = Threads::token('token')
-            ->status(id: 'id');
+            ->status(id: 'id')
+            ->json();
 
         $this->assertIsArray($res);
     }
@@ -124,7 +129,8 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $res = Threads::token('token')
-            ->quota();
+            ->quota()
+            ->json();
 
         $this->assertIsArray($res);
     }
@@ -135,7 +141,8 @@ class ClientTest extends TestCase
             ->push([])
             ->whenEmpty(Http::response());
 
-        $res = Threads::exchangeToken('short', 'secret');
+        $res = Threads::exchangeToken('short', 'secret')
+            ->json();
 
         $this->assertIsArray($res);
     }
@@ -147,7 +154,8 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $res = Threads::token('token')
-            ->refreshToken();
+            ->refreshToken()
+            ->json();
 
         $this->assertIsArray($res);
     }
@@ -158,7 +166,8 @@ class ClientTest extends TestCase
             ->push([])
             ->whenEmpty(Http::response());
 
-        $res = (new TestUser)->threads()->profiles();
+        $res = (new TestUser)->threads()->profiles()
+            ->json();
 
         $this->assertIsArray($res);
     }

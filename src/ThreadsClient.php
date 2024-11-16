@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Revolution\Threads;
 
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Sleep;
@@ -62,7 +63,7 @@ class ThreadsClient implements Factory
         return $this;
     }
 
-    public function profiles(string $user = 'me', ?array $fields = null): array
+    public function profiles(string $user = 'me', ?array $fields = null): Response
     {
         $fields ??= [
             'id',
@@ -71,19 +72,17 @@ class ThreadsClient implements Factory
             'threads_biography',
         ];
 
-        $response = $this->http()
+        return $this->http()
             ->get($user, [
                 'fields' => Arr::join($fields, ','),
             ]);
-
-        return $response->json() ?? [];
     }
 
-    public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): array
+    public function posts(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): Response
     {
         $fields ??= self::POST_DEFAULT_FIELDS;
 
-        $response = $this->http()
+        return $this->http()
             ->get($user.'/threads', [
                 'fields' => Arr::join($fields, ','),
                 'limit' => $limit,
@@ -92,52 +91,44 @@ class ThreadsClient implements Factory
                 'since' => $since,
                 'until' => $until,
             ]);
-
-        return $response->json() ?? [];
     }
 
-    public function single(string $id, ?array $fields = null): array
+    public function single(string $id, ?array $fields = null): Response
     {
         $fields ??= self::POST_DEFAULT_FIELDS;
 
-        $response = $this->http()
+        return $this->http()
             ->get($id, [
                 'fields' => Arr::join($fields, ','),
             ]);
-
-        return $response->json() ?? [];
     }
 
-    public function publish(string $id, int $sleep = 0): array
+    public function publish(string $id, int $sleep = 0): Response
     {
         if ($sleep > 0) {
             Sleep::sleep($sleep);
         }
 
-        $response = $this->http()
+        return $this->http()
             ->post('me/threads_publish', [
                 'creation_id' => $id,
             ]);
-
-        return $response->json() ?? [];
     }
 
-    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
+    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
     {
-        $response = $this->http()
+        return $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::TEXT->name,
                 'text' => $text,
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
             ]);
-
-        return $response->json('id', '');
     }
 
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
     {
-        $response = $this->http()
+        return $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::IMAGE->name,
                 'image_url' => $url,
@@ -146,13 +137,11 @@ class ThreadsClient implements Factory
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
             ]);
-
-        return $response->json('id', '');
     }
 
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
     {
-        $response = $this->http()
+        return $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::VIDEO->name,
                 'video_url' => $url,
@@ -161,13 +150,11 @@ class ThreadsClient implements Factory
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
             ]);
-
-        return $response->json('id', '');
     }
 
-    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): string
+    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
     {
-        $response = $this->http()
+        return $this->http()
             ->post('me/threads', [
                 'media_type' => MediaType::CAROUSEL->name,
                 'children' => Arr::join($children, ','),
@@ -175,61 +162,51 @@ class ThreadsClient implements Factory
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
             ]);
-
-        return $response->json('id', '');
     }
 
-    public function status(string $id, ?array $fields = null): array
+    public function status(string $id, ?array $fields = null): Response
     {
         $fields ??= [
             'status',
             'error_message',
         ];
 
-        $response = $this->http()
+        return $this->http()
             ->get($id, [
                 'fields' => Arr::join($fields, ','),
             ]);
-
-        return $response->json() ?? [];
     }
 
-    public function quota(string $user = 'me', ?array $fields = null): array
+    public function quota(string $user = 'me', ?array $fields = null): Response
     {
         $fields ??= [
             'quota_usage',
             'config',
         ];
 
-        $response = $this->http()
+        return $this->http()
             ->get($user.'/threads_publishing_limit', [
                 'fields' => Arr::join($fields, ','),
             ]);
-
-        return $response->json() ?? [];
     }
 
-    public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): array
+    public function exchangeToken(#[\SensitiveParameter] string $short, #[\SensitiveParameter] string $secret): Response
     {
-        $response = Http::baseUrl($this->base_url)
+        return Http::baseUrl($this->base_url)
             ->get('access_token', [
                 'grant_type' => 'th_exchange_token',
                 'client_secret' => $secret,
                 'access_token' => $short,
             ]);
-
-        return $response->json() ?? [];
     }
 
-    public function refreshToken(): array
+    public function refreshToken(): Response
     {
-        $response = Http::baseUrl($this->base_url)
+        return Http::baseUrl($this->base_url)
             ->get('refresh_access_token', [
                 'grant_type' => 'th_refresh_token',
                 'access_token' => $this->token,
             ]);
-
-        return $response->json() ?? [];
     }
 
     private function http(): PendingRequest

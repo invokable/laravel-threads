@@ -23,11 +23,11 @@ class ThreadsChannel
         Threads::token($token);
 
         if (filled($message->video_url)) {
-            $id = Threads::createVideo($message->video_url, $message->text);
+            $id = Threads::createVideo($message->video_url, $message->text)->json('id', '');
         } elseif (filled($message->image_url)) {
-            $id = Threads::createImage($message->image_url, $message->text);
+            $id = Threads::createImage($message->image_url, $message->text)->json('id', '');
         } else {
-            $id = Threads::createText($message->text);
+            $id = Threads::createText($message->text)->json('id', '');
         }
 
         Threads::publish($id, $message->sleep);

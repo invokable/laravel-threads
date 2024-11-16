@@ -21,7 +21,7 @@ composer remove revolution/laravel-threads
 ```
 
 ## Usage
-- [ThreadsClient](./docs/threads-client.md)
+- [Basic Client](./docs/basic-client.md)
 - [Socialite](./docs/socialite.md)
 - [Laravel Notifications](./docs/notification.md)
 

@@ -63,7 +63,7 @@ class SocialiteController extends Controller
         $user = Socialite::driver('threads')->user();
 
         // Exchange short-lived token to long-lived token
-        $long_token = Threads::exchangeToken($user->token, config('services.threads.client_secret'))['access_token'] ?? '';
+        $long_token = Threads::exchangeToken($user->token, config('services.threads.client_secret'))->json('access_token', '');
 
         $loginUser = User::updateOrCreate([
             'id' => $user->id,
