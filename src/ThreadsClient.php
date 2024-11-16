@@ -116,7 +116,7 @@ class ThreadsClient implements Factory
             ]);
     }
 
-    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $link_attachment = null): Response
+    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $link_attachment = null, ?string $quote_post_id = null): Response
     {
         return $this->http()
             ->post('me/threads', [
@@ -125,10 +125,11 @@ class ThreadsClient implements Factory
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
                 'link_attachment' => $link_attachment,
+                'quote_post_id' => $quote_post_id,
             ]);
     }
 
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null): Response
     {
         return $this->http()
             ->post('me/threads', [
@@ -138,10 +139,11 @@ class ThreadsClient implements Factory
                 'is_carousel_item' => $is_carousel,
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
+                'quote_post_id' => $quote_post_id,
             ]);
     }
 
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null): Response
     {
         return $this->http()
             ->post('me/threads', [
@@ -151,10 +153,11 @@ class ThreadsClient implements Factory
                 'is_carousel_item' => $is_carousel,
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
+                'quote_post_id' => $quote_post_id,
             ]);
     }
 
-    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response
+    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null): Response
     {
         return $this->http()
             ->post('me/threads', [
@@ -163,6 +166,7 @@ class ThreadsClient implements Factory
                 'text' => $text,
                 'reply_to_id' => $reply_to_id,
                 'reply_control' => $reply_control?->value,
+                'quote_post_id' => $quote_post_id,
             ]);
     }
 
