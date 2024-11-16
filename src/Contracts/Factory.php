@@ -36,6 +36,11 @@ interface Factory
     public function single(string $id, ?array $fields = null): Response;
 
     /**
+     * @return Response{data: array<array-key, string>, paging: array}
+     */
+    public function replies(string $user = 'me', int $limit = 25, ?array $fields = null, ?string $before = null, ?string $after = null, ?string $since = null, ?string $until = null): Response;
+
+    /**
      * Publish Threads Media Container.
      *
      * @return Response{id: string}
