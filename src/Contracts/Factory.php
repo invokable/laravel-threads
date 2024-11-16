@@ -72,6 +72,13 @@ interface Factory
     public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null): Response;
 
     /**
+     * Repost.
+     *
+     * @return Response{id: string}  Threads Repost ID
+     */
+    public function repost(string $id): Response;
+
+    /**
      * Publishing status.
      *
      * @return Response{status: string, id: string, error_message?: string}
