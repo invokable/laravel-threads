@@ -45,7 +45,8 @@ class ThreadsClient implements Factory
         'has_replies',
         'is_reply',
         'is_reply_owned_by_me',
-        'root_post', 'replied_to',
+        'root_post',
+        'replied_to',
         'hide_status',
         'reply_audience',
     ];
