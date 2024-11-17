@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Revolution\Threads\Notifications;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Notifications\Notification;
 use Revolution\Threads\Facades\Threads;
 
 class ThreadsChannel
 {
-    public function send(mixed $notifiable, Notification $notification): void
+    public function send(mixed $notifiable, Notification $notification): ?Response
     {
         /** @var ThreadsMessage $message */
         $message = $notification->toThreads($notifiable);
 
         if (! $message instanceof ThreadsMessage) {
-            return; // @codeCoverageIgnore
+            return null; // @codeCoverageIgnore
         }
 
         $token = $notifiable->routeNotificationFor('threads', $notification);
@@ -31,9 +32,9 @@ class ThreadsChannel
         }
 
         if ($response->failed()) {
-            return;
+            return $response;
         }
 
-        Threads::publish($response->json('id', ''), $message->sleep);
+        return Threads::publish($response->json('id', ''), $message->sleep);
     }
 }
