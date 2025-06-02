@@ -16,7 +16,7 @@ use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -115,7 +115,7 @@ class NotificationTest extends TestCase
     {
         Http::fake(fn () => Http::response(['id' => 'id']));
 
-        $user = new TestUser();
+        $user = new TestUser;
 
         $user->notify(new TestNotification(text: 'test'));
 
@@ -127,8 +127,7 @@ class TestNotification extends \Illuminate\Notifications\Notification
 {
     public function __construct(
         protected string $text,
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {
@@ -145,8 +144,7 @@ class TestImageNotification extends \Illuminate\Notifications\Notification
 {
     public function __construct(
         protected string $text,
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {
@@ -163,8 +161,7 @@ class TestVideoNotification extends \Illuminate\Notifications\Notification
 {
     public function __construct(
         protected string $text,
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {

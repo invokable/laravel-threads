@@ -17,8 +17,8 @@ use Revolution\Threads\Enums\ReplyControl;
 
 class ThreadsClient implements Factory
 {
-    use Macroable;
     use Conditionable;
+    use Macroable;
 
     protected string $token = '';
 

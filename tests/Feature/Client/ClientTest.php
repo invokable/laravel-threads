@@ -16,7 +16,7 @@ class ClientTest extends TestCase
 {
     public function test_client()
     {
-        $client = new ThreadsClient();
+        $client = new ThreadsClient;
         $client->token('token')->when(true, function (ThreadsClient $client) {
             return $client->baseUrl('url')->apiVersion('v1.0');
         });
