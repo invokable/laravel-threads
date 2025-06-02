@@ -12,21 +12,21 @@ use Tests\TestCase;
 
 class SocialiteTest extends TestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         m::close();
 
         parent::tearDown();
     }
 
-    public function testInstance()
+    public function test_instance()
     {
         $provider = Socialite::driver('threads');
 
         $this->assertInstanceOf(ThreadsProvider::class, $provider);
     }
 
-    public function testRedirect()
+    public function test_redirect()
     {
         $request = Request::create('foo');
         $request->setLaravelSession($session = m::mock('Illuminate\Contracts\Session\Session'));

@@ -14,13 +14,14 @@ final class ThreadsMessage implements Arrayable
     use Macroable;
 
     public ?string $image_url = null;
+
     public ?string $video_url = null;
+
     public int $sleep = 0;
 
     public function __construct(
         public readonly string $text,
-    ) {
-    }
+    ) {}
 
     public static function create(string $text): self
     {
