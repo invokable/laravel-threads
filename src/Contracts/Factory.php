@@ -53,21 +53,21 @@ interface Factory
      *
      * @return Response{id: string} Threads Media Container ID
      */
-    public function createText(string $text, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $link_attachment = null, ?string $quote_post_id = null, ?array $options = []): Response;
+    public function createText(string $text, ?array $options = []): Response;
 
     /**
      * Create Image Container.
      *
      * @return Response{id: string} Threads Media Container ID
      */
-    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null, ?array $options = []): Response;
+    public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?array $options = []): Response;
 
     /**
      * Create Video Container.
      *
      * @return Response{id: string} Threads Media Container ID
      */
-    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $alt_text = null, ?string $quote_post_id = null, ?array $options = []): Response;
+    public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?array $options = []): Response;
 
     /**
      * Create Carousel Container.
@@ -75,7 +75,7 @@ interface Factory
      * @param  array  $children  Container IDs
      * @return Response{id: string} Threads Media Container ID
      */
-    public function createCarousel(array $children, ?string $text = null, ?ReplyControl $reply_control = null, ?string $reply_to_id = null, ?string $quote_post_id = null, ?array $options = []): Response;
+    public function createCarousel(array $children, ?string $text = null, ?array $options = []): Response;
 
     /**
      * Repost.
