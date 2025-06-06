@@ -59,7 +59,7 @@ class SocialiteTest extends TestCase
         $this->assertStringStartsWith('https://threads.net/oauth/authorize', $url);
         $this->assertStringContainsString('client_id=client_id', $url);
         $this->assertStringContainsString('redirect_uri=redirect', $url);
-        $this->assertStringContainsString('scope=threads_basic%2Cthreads_content_publish', $url);
+        $this->assertStringContainsString('scope=threads_basic%2Cthreads_content_publish%2Cthreads_delete', $url);
         $this->assertStringContainsString('response_type=code', $url);
     }
 
@@ -74,7 +74,8 @@ class SocialiteTest extends TestCase
         $response = $provider->redirect();
 
         $url = $response->getTargetUrl();
-        $this->assertStringContainsString('scope=threads_basic%2Cthreads_content_publish%2Cthreads_manage_insights', $url);
+        // After merging with default 'threads_delete' and sorting
+        $this->assertStringContainsString('scope=threads_basic%2Cthreads_content_publish%2Cthreads_delete%2Cthreads_manage_insights', $url);
     }
 
     public function test_get_auth_url_returns_correct_url()
@@ -222,7 +223,7 @@ class SocialiteTest extends TestCase
         $request = Request::create('foo');
         $provider = new ThreadsProvider($request, 'client_id', 'client_secret', 'redirect');
 
-        $this->assertEquals(['threads_basic', 'threads_content_publish'], $provider->getScopes());
+        $this->assertEquals(['threads_basic', 'threads_content_publish', 'threads_delete'], $provider->getScopes());
     }
 
     public function test_provider_with_custom_scopes()
@@ -231,8 +232,12 @@ class SocialiteTest extends TestCase
         $provider = new ThreadsProvider($request, 'client_id', 'client_secret', 'redirect');
 
         $provider->scopes(['threads_basic', 'threads_content_publish', 'threads_manage_insights']);
-
-        $this->assertEquals(['threads_basic', 'threads_content_publish', 'threads_manage_insights'], $provider->getScopes());
+        // Expect merged and sorted scopes
+        $expectedScopes = ['threads_basic', 'threads_content_publish', 'threads_delete', 'threads_manage_insights'];
+        sort($expectedScopes); // Ensure order for comparison if getScopes() also sorts, though it usually doesn't for raw array.
+        $actualScopes = $provider->getScopes();
+        sort($actualScopes);
+        $this->assertEquals($expectedScopes, $actualScopes);
     }
 
     public function test_user_profile_request_uses_bearer_token()
@@ -283,7 +288,8 @@ class SocialiteTest extends TestCase
         $response = $provider->redirect();
 
         $url = $response->getTargetUrl();
-        $this->assertStringContainsString('scope=threads_basic%2Cthreads_content_publish%2Cthreads_manage_insights', $url);
+        // After merging with default 'threads_delete' and sorting
+        $this->assertStringContainsString('scope=threads_basic%2Cthreads_content_publish%2Cthreads_delete%2Cthreads_manage_insights', $url);
     }
 
     public function test_get_user_by_token_method()
