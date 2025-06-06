@@ -27,7 +27,7 @@ use Revolution\Threads\Facades\Threads;
 Threads::token($token);
 
 $id = Threads::createText('test')->json('id');
-Threads::publish($id)
+Threads::publish($id);
 ```
 
 ### Reply Control
@@ -39,7 +39,7 @@ use Revolution\Threads\Enums\ReplyControl;
 Threads::token($token);
 
 $id = Threads::createText(text: 'test', reply_control: ReplyControl::FOLLOW)->json('id');
-Threads::publish($id)
+Threads::publish($id);
 ```
 
 ### Image
@@ -50,7 +50,7 @@ use Revolution\Threads\Facades\Threads;
 Threads::token($token);
 
 $id = Threads::createImage(url: 'https://.../cat.png', text: 'test')->json('id');
-Threads::publish($id)
+Threads::publish($id);
 ```
 
 ### Video
@@ -61,7 +61,7 @@ use Revolution\Threads\Facades\Threads;
 Threads::token($token);
 
 $id = Threads::createVideo(url: 'https://.../dog.mov', text: 'test')->json('id');
-Threads::publish($id)
+Threads::publish($id);
 ```
 
 ### Carousel
@@ -74,7 +74,7 @@ Threads::token($token);
 $id1 = Threads::createImage(url: 'https://.../cat1.png', is_carousel: true)['id'];
 $id2 = Threads::createImage(url: 'https://.../cat2.png', is_carousel: true)['id'];
 $id = Threads::createCarousel(children: [$id1, $id2], text: 'test')['id'];
-Threads::publish($id)
+Threads::publish($id);
 ```
 
 ## Get my posts
