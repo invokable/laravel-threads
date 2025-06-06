@@ -129,7 +129,7 @@ $posts = Threads::token($token)->posts(limit: 30)->json();
 //]
 ```
 
-## Get single post
+## Get a single post
 
 ```php
 use Revolution\Threads\Facades\Threads;
@@ -139,6 +139,17 @@ $post = Threads::token($token)->single(id: $id)->json();
 //    'id' => '',
 //    'text' => 'Hello World',
 //    '...' => '...',
+//]
+```
+
+## Repost
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$repost = Threads::token($token)->repost(id: $id)->json();
+//[
+//    'id' => '',
 //]
 ```
 
