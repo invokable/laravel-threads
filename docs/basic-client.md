@@ -56,7 +56,7 @@ use Revolution\Threads\Enums\ReplyControl;
 
 Threads::token($token);
 
-$id = Threads::createText(text: 'test', options: ['reply_control' => ReplyControl::FOLLOW])->json('id');
+$id = Threads::createText(text: 'test', options: ['reply_control' => ReplyControl::FOLLOW->value])->json('id');
 Threads::publish($id);
 ```
 
