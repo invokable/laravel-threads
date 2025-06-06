@@ -49,6 +49,10 @@ class ThreadsClient implements Factory
         'replied_to',
         'hide_status',
         'reply_audience',
+        'quoted_post',
+        'reposted_post',
+        'gif_url',
+        'poll_attachment',
     ];
 
     public function token(#[\SensitiveParameter] string $token): static
