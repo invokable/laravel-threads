@@ -30,6 +30,24 @@ $id = Threads::createText('test')->json('id');
 Threads::publish($id);
 ```
 
+### Auto publish
+
+The `Threads::publish()` step can be skipped if the `auto_publish_text` option is specified in the `options` array when creating text posts:
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+Threads::token($token);
+
+Threads::createText('test', options: ['auto_publish_text' => true]);
+```
+
+**Note:** Auto-publishing is only available for Text posts.
+
+Arbitrary additional parameters can be specified in the `options` array.
+
+For additional information, see: https://developers.facebook.com/docs/threads/reference/publishing
+
 ### Reply Control
 
 ```php
