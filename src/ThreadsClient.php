@@ -146,42 +146,42 @@ class ThreadsClient implements Factory
     public function createText(string $text, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', array_merge([
+            ->post('me/threads', [
                 'media_type' => MediaType::TEXT->name,
                 'text' => $text,
-            ], $options));
+            ] + $options);
     }
 
     public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', array_merge([
+            ->post('me/threads', [
                 'media_type' => MediaType::IMAGE->name,
                 'image_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
-            ], $options));
+            ] + $options);
     }
 
     public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', array_merge([
+            ->post('me/threads', [
                 'media_type' => MediaType::VIDEO->name,
                 'video_url' => $url,
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
-            ], $options));
+            ] + $options);
     }
 
     public function createCarousel(array $children, ?string $text = null, ?array $options = []): Response
     {
         return $this->http()
-            ->post('me/threads', array_merge([
+            ->post('me/threads', [
                 'media_type' => MediaType::CAROUSEL->name,
                 'children' => Arr::join($children, ','),
                 'text' => $text,
-            ], $options));
+            ] + $options);
     }
 
     public function repost(string $id): Response
