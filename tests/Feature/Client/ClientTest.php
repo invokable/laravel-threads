@@ -122,6 +122,33 @@ class ClientTest extends TestCase
         $this->assertIsArray($res);
     }
 
+    public function test_repost()
+    {
+        Http::fakeSequence()
+            ->push(['id' => 'repost_id'])
+            ->whenEmpty(Http::response());
+
+        $id = Threads::token('token')
+            ->repost(id: 'post_id')
+            ->json('id');
+
+        $this->assertSame('repost_id', $id);
+    }
+
+    public function test_delete()
+    {
+        Http::fakeSequence()
+            ->push(['success' => true, 'deleted_id' => 'post_id'])
+            ->whenEmpty(Http::response());
+
+        $res = Threads::token('token')
+            ->delete(id: 'post_id')
+            ->json();
+
+        $this->assertTrue($res['success']);
+        $this->assertSame('post_id', $res['deleted_id']);
+    }
+
     public function test_quota()
     {
         Http::fakeSequence()

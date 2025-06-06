@@ -142,6 +142,18 @@ $post = Threads::token($token)->single(id: $id)->json();
 //]
 ```
 
+## Delete post
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$result = Threads::token($token)->delete(id: $id)->json();
+//[
+//    'success' => true,
+//    'deleted_id' => '1234567890',
+//]
+```
+
 ## Macroable
 
 If you need other methods you can add any method using the macro feature.
