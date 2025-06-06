@@ -199,7 +199,7 @@ class ThreadsClient implements Factory
 
     public function search(string $q, ?string $type = null): Response
     {
-        $type ??= SearchType::TOP->value;
+        $type ??= 'top';
 
         return $this->http()
             ->get('keyword_search', [

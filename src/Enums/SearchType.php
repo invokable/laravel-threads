@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Revolution\Threads\Enums;
 
-enum SearchType: string
+enum SearchType
 {
-    case TOP = 'top';
-    case RECENT = 'recent';
+    case TOP;
+    case RECENT;
 }
