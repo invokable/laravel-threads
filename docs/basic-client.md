@@ -95,6 +95,24 @@ $id = Threads::createCarousel(children: [$id1, $id2], text: 'test')['id'];
 Threads::publish($id);
 ```
 
+### Polls
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+Threads::token($token);
+
+$polls = [
+    'option_a' => 'first option',
+    'option_b' => 'second option',
+    'option_c' => 'third option', // Optional
+    'option_d' => 'fourth option', // Optional
+];
+
+$id = Threads::createText('test', options: ['poll_attachment' => $polls])->json('id');
+Threads::publish($id);
+```
+
 ## Get my posts
 
 ```php
