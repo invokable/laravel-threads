@@ -92,6 +92,13 @@ interface Factory
     public function delete(string $id): Response;
 
     /**
+     * Search for public Threads media with specific keywords.
+     *
+     * @return Response{data: array<array-key, string>, paging: array}
+     */
+    public function search(string $q, ?string $type = null): Response;
+
+    /**
      * Publishing status.
      *
      * @return Response{status: string, id: string, error_message?: string}

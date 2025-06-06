@@ -187,6 +187,34 @@ class ClientTest extends TestCase
         $this->assertIsArray($res);
     }
 
+    public function test_search_top()
+    {
+        Http::fakeSequence()
+            ->push(['data' => []])
+            ->whenEmpty(Http::response());
+
+        $res = Threads::token('token')
+            ->search(q: 'test query')
+            ->json();
+
+        $this->assertIsArray($res);
+        $this->assertArrayHasKey('data', $res);
+    }
+
+    public function test_search_recent()
+    {
+        Http::fakeSequence()
+            ->push(['data' => []])
+            ->whenEmpty(Http::response());
+
+        $res = Threads::token('token')
+            ->search(q: 'test query', type: 'recent')
+            ->json();
+
+        $this->assertIsArray($res);
+        $this->assertArrayHasKey('data', $res);
+    }
+
     public function test_user_trait()
     {
         Http::fakeSequence()

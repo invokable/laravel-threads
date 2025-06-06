@@ -165,6 +165,46 @@ $result = Threads::token($token)->delete(id: $id)->json();
 //]
 ```
 
+## Keyword Search
+
+Search for public Threads media with specific keywords using the keyword search API.
+
+### Basic Search (TOP results)
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$results = Threads::token($token)->search(q: 'laravel')->json();
+//[
+//    'data' => [
+//        // Array of matching posts
+//    ],
+//    'paging' => [
+//        // Pagination information
+//    ],
+//]
+```
+
+### Search with Type
+
+You can specify the search type to get either top results (default) or recent results:
+
+```php
+use Revolution\Threads\Facades\Threads;
+use Revolution\Threads\Enums\SearchType;
+
+// Search for top results (default)
+$topResults = Threads::token($token)->search(q: 'laravel', type: SearchType::TOP->value)->json();
+
+// Search for recent results
+$recentResults = Threads::token($token)->search(q: 'laravel', type: SearchType::RECENT->value)->json();
+
+// Or use string values directly
+$recentResults = Threads::token($token)->search(q: 'laravel', type: 'recent')->json();
+```
+
+**Note:** The keyword search API requires the `threads_keyword_search` permission scope, which is included by default in the Socialite provider.
+
 ## Macroable
 
 If you need other methods you can add any method using the macro feature.

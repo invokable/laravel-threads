@@ -14,6 +14,7 @@ use Illuminate\Support\Traits\Macroable;
 use Revolution\Threads\Contracts\Factory;
 use Revolution\Threads\Enums\MediaType;
 use Revolution\Threads\Enums\ReplyControl;
+use Revolution\Threads\Enums\SearchType;
 
 class ThreadsClient implements Factory
 {
@@ -194,6 +195,17 @@ class ThreadsClient implements Factory
     {
         return $this->http()
             ->delete($id);
+    }
+
+    public function search(string $q, ?string $type = null): Response
+    {
+        $type ??= SearchType::TOP->value;
+
+        return $this->http()
+            ->get('keyword_search', [
+                'q' => $q,
+                'search_type' => $type,
+            ]);
     }
 
     public function status(string $id, ?array $fields = null): Response
