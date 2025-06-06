@@ -190,6 +190,12 @@ class ThreadsClient implements Factory
             ->post($id.'/repost');
     }
 
+    public function delete(string $id): Response
+    {
+        return $this->http()
+            ->delete($id);
+    }
+
     public function status(string $id, ?array $fields = null): Response
     {
         $fields ??= [

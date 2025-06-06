@@ -85,6 +85,13 @@ interface Factory
     public function repost(string $id): Response;
 
     /**
+     * Delete Threads Media.
+     *
+     * @return Response{success: bool}
+     */
+    public function delete(string $id): Response;
+
+    /**
      * Publishing status.
      *
      * @return Response{status: string, id: string, error_message?: string}

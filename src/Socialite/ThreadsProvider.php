@@ -18,6 +18,7 @@ class ThreadsProvider extends AbstractProvider implements ProviderInterface
     protected $scopes = [
         'threads_basic',
         'threads_content_publish',
+        'threads_delete',
     ];
 
     protected string $endpoint = 'https://graph.threads.net/';

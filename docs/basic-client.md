@@ -142,6 +142,26 @@ $post = Threads::token($token)->single(id: $id)->json();
 //]
 ```
 
+## Delete Post
+
+You can delete a specific post (Threads media) using its ID.
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$idToDelete = 'your_post_id_here'; // Replace with the actual ID of the post to delete
+
+$response = Threads::token($token)->delete(id: $idToDelete);
+
+if ($response->successful() && $response->json('success')) {
+    // Post was successfully deleted
+    echo "Post deleted successfully.";
+} else {
+    // Handle error
+    echo "Failed to delete post: " . $response->body();
+}
+```
+
 ## Macroable
 
 If you need other methods you can add any method using the macro feature.
