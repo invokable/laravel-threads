@@ -64,7 +64,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createText(text: 'test', reply_control: ReplyControl::EVERYONE, reply_to_id: '1', options: [])
+            ->createText(text: 'test', options: ['reply_control' => ReplyControl::EVERYONE, 'reply_to_id' => '1'])
             ->json('id');
 
         $this->assertSame('test', $id);
@@ -77,7 +77,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createImage(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1')
+            ->createImage(url: 'url', text: 'test', options: ['reply_control' => ReplyControl::MENTIONED, 'reply_to_id' => '1'])
             ->json('id');
 
         $this->assertSame('test', $id);
@@ -90,7 +90,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createVideo(url: 'url', text: 'test', reply_control: ReplyControl::MENTIONED, reply_to_id: '1')
+            ->createVideo(url: 'url', text: 'test', options: ['reply_control' => ReplyControl::MENTIONED, 'reply_to_id' => '1'])
             ->json('id');
 
         $this->assertSame('test', $id);
@@ -103,7 +103,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $id = Threads::token('token')
-            ->createCarousel(children: [], reply_control: ReplyControl::FOLLOW, reply_to_id: '1')
+            ->createCarousel(children: [], options: ['reply_control' => ReplyControl::FOLLOW, 'reply_to_id' => '1'])
             ->json('id');
 
         $this->assertSame('test', $id);
