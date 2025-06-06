@@ -146,7 +146,7 @@ class ThreadsClient implements Factory
                 'media_type' => MediaType::TEXT->name,
                 'text' => $text,
                 'reply_to_id' => $options['reply_to_id'] ?? null,
-                'reply_control' => $options['reply_control']?->value ?? null,
+                'reply_control' => $options['reply_control'] ?? null,
                 'link_attachment' => $options['link_attachment'] ?? null,
                 'quote_post_id' => $options['quote_post_id'] ?? null,
             ], $options));
@@ -161,7 +161,7 @@ class ThreadsClient implements Factory
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
                 'reply_to_id' => $options['reply_to_id'] ?? null,
-                'reply_control' => $options['reply_control']?->value ?? null,
+                'reply_control' => $options['reply_control'] ?? null,
                 'alt_text' => $options['alt_text'] ?? null,
                 'quote_post_id' => $options['quote_post_id'] ?? null,
             ], $options));
@@ -176,7 +176,7 @@ class ThreadsClient implements Factory
                 'text' => $text,
                 'is_carousel_item' => $is_carousel,
                 'reply_to_id' => $options['reply_to_id'] ?? null,
-                'reply_control' => $options['reply_control']?->value ?? null,
+                'reply_control' => $options['reply_control'] ?? null,
                 'alt_text' => $options['alt_text'] ?? null,
                 'quote_post_id' => $options['quote_post_id'] ?? null,
             ], $options));
@@ -190,7 +190,7 @@ class ThreadsClient implements Factory
                 'children' => Arr::join($children, ','),
                 'text' => $text,
                 'reply_to_id' => $options['reply_to_id'] ?? null,
-                'reply_control' => $options['reply_control']?->value ?? null,
+                'reply_control' => $options['reply_control'] ?? null,
                 'quote_post_id' => $options['quote_post_id'] ?? null,
             ], $options));
     }
