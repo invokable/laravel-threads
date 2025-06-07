@@ -129,7 +129,7 @@ $posts = Threads::token($token)->posts(limit: 30)->json();
 //]
 ```
 
-## 指定ユーザーの投稿を取得
+## Get posts from specified user
 
 ```php
 use Revolution\Threads\Facades\Threads;
