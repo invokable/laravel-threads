@@ -7,6 +7,7 @@ namespace Tests\Feature\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use Revolution\Threads\Enums\ReplyControl;
+use Revolution\Threads\Enums\SearchType;
 use Revolution\Threads\Facades\Threads;
 use Revolution\Threads\ThreadsClient;
 use Revolution\Threads\Traits\WithThreads;
@@ -208,7 +209,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $res = Threads::token('token')
-            ->search(q: 'test query', type: 'recent')
+            ->search(q: 'test query', type: SearchType::RECENT->name)
             ->json();
 
         $this->assertIsArray($res);
