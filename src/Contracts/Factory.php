@@ -6,6 +6,7 @@ namespace Revolution\Threads\Contracts;
 
 use Illuminate\Http\Client\Response;
 use Revolution\Threads\Enums\ReplyControl;
+use Revolution\Threads\Enums\SearchType;
 
 interface Factory
 {
@@ -96,7 +97,7 @@ interface Factory
      *
      * @return Response{data: array<array-key, string>, paging: array}
      */
-    public function search(string $q, ?string $type = null): Response;
+    public function search(string $q, string $type = SearchType::TOP->name, ?array $fields = null): Response;
 
     /**
      * Publishing status.
