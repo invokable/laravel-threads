@@ -193,10 +193,10 @@ You can specify the search type to get either top results (default) or recent re
 use Revolution\Threads\Facades\Threads;
 
 // Search for top results (default)
-$topResults = Threads::token($token)->search(q: 'laravel', type: 'top')->json();
+$topResults = Threads::token($token)->search(q: 'laravel', type: SearchType::TOP->name)->json();
 
 // Search for recent results
-$recentResults = Threads::token($token)->search(q: 'laravel', type: 'recent')->json();
+$recentResults = Threads::token($token)->search(q: 'laravel', type: SearchType::RECENT->name)->json();
 ```
 
 **Note:** The keyword search API requires the `threads_keyword_search` permission scope, which is included by default in the Socialite provider.
