@@ -13,7 +13,6 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Revolution\Threads\Contracts\Factory;
 use Revolution\Threads\Enums\MediaType;
-use Revolution\Threads\Enums\ReplyControl;
 use Revolution\Threads\Enums\SearchType;
 
 class ThreadsClient implements Factory
