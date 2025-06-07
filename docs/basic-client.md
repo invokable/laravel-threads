@@ -129,6 +129,14 @@ $posts = Threads::token($token)->posts(limit: 30)->json();
 //]
 ```
 
+## Get posts from specified user
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$posts = Threads::token($token)->posts(user: '1234567', limit: 30)->json();
+```
+
 ## Get a single post
 
 ```php
