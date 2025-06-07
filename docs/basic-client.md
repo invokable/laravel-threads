@@ -191,6 +191,7 @@ You can specify the search type to get either top results (default) or recent re
 
 ```php
 use Revolution\Threads\Facades\Threads;
+use Revolution\Threads\Enums\SearchType;
 
 // Search for top results (default)
 $topResults = Threads::token($token)->search(q: 'laravel', type: SearchType::TOP->name)->json();
