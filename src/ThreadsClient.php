@@ -148,41 +148,41 @@ class ThreadsClient implements Factory
     {
         return $this->http()
             ->post('me/threads', [
-                'media_type' => MediaType::TEXT->name,
-                'text' => $text,
-            ] + $options);
+                    'media_type' => MediaType::TEXT->name,
+                    'text' => $text,
+                ] + $options);
     }
 
     public function createImage(string $url, ?string $text = null, bool $is_carousel = false, ?array $options = []): Response
     {
         return $this->http()
             ->post('me/threads', [
-                'media_type' => MediaType::IMAGE->name,
-                'image_url' => $url,
-                'text' => $text,
-                'is_carousel_item' => $is_carousel,
-            ] + $options);
+                    'media_type' => MediaType::IMAGE->name,
+                    'image_url' => $url,
+                    'text' => $text,
+                    'is_carousel_item' => $is_carousel,
+                ] + $options);
     }
 
     public function createVideo(string $url, ?string $text = null, bool $is_carousel = false, ?array $options = []): Response
     {
         return $this->http()
             ->post('me/threads', [
-                'media_type' => MediaType::VIDEO->name,
-                'video_url' => $url,
-                'text' => $text,
-                'is_carousel_item' => $is_carousel,
-            ] + $options);
+                    'media_type' => MediaType::VIDEO->name,
+                    'video_url' => $url,
+                    'text' => $text,
+                    'is_carousel_item' => $is_carousel,
+                ] + $options);
     }
 
     public function createCarousel(array $children, ?string $text = null, ?array $options = []): Response
     {
         return $this->http()
             ->post('me/threads', [
-                'media_type' => MediaType::CAROUSEL->name,
-                'children' => Arr::join($children, ','),
-                'text' => $text,
-            ] + $options);
+                    'media_type' => MediaType::CAROUSEL->name,
+                    'children' => Arr::join($children, ','),
+                    'text' => $text,
+                ] + $options);
     }
 
     public function repost(string $id): Response
@@ -197,14 +197,15 @@ class ThreadsClient implements Factory
             ->delete($id);
     }
 
-    public function search(string $q, ?string $type = null): Response
+    public function search(string $q, string $type = SearchType::TOP->name, ?array $fields = null): Response
     {
-        $type ??= 'top';
+        $fields ??= self::POST_DEFAULT_FIELDS;
 
         return $this->http()
             ->get('keyword_search', [
                 'q' => $q,
                 'search_type' => $type,
+                'fields' => Arr::join($fields, ','),
             ]);
     }
 
