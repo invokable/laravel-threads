@@ -204,7 +204,8 @@ $recentResults = Threads::token($token)->search(q: 'laravel', type: SearchType::
 
 ## Macroable
 
-If you need other methods you can add any method using the macro feature.
+This package only implements a few of the most commonly used methods.  
+If you need other methods, you can add any method using the macro feature.
 
 ```php
 namespace App\Providers;
