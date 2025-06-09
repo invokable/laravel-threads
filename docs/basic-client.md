@@ -143,8 +143,6 @@ $id = Threads::createCarousel(children: [$id1, $id2], text: 'test')['id'];
 Threads::publish($id);
 ```
 
-**Implementation Note**: While using temporary variables may seem un-Laravel-like, this approach is necessary for carousel functionality and represents the most reliable pattern for multi-media posts.
-
 ### Polls
 
 ```php
@@ -181,10 +179,9 @@ $posts = Threads::token($token)->posts(limit: 30)->json();
 
 ### Working with Post Data
 
-API responses are returned as raw arrays without additional processing, allowing flexible usage with Laravel Collections:
-
 ```php
-collect($posts['data'] ?? [])->each(function (array $post) {
+$posts = Threads::token($token)->posts(limit: 30);
+$posts->each(function (array $post) {
     $text = $post['text'] ?? ''; // Handle missing fields
     // or use Arr::get($post, 'text') for safer access
 });
