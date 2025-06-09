@@ -1,6 +1,6 @@
 # Socialite driver for Threads
 
-I will remove this if Laravel officially supports Threads.
+To use Socialite, please refer to the README and create an "App" in Meta for Developers.
 
 ## Configuration
 
