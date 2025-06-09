@@ -31,13 +31,13 @@ https://developers.facebook.com/
 - "Do not link to a business portfolio"
 - Select Threads API as the use case
 
-## Customizing the Use Case
+### Customizing the Use Case
 Once you reach the app dashboard, customize the Threads API settings from the use case.
 
-### Permissions
+#### Permissions
 `threads_basic` is required and enabled by default. Enable `threads_content_publish` for posting, `threads_delete` for deleting, and `threads_keyword_search` for searching.
 
-### Settings
+#### Settings
 Add your Threads account as a Threads tester. Approve it on the Threads website. Generate a token. If you only want to post to your own account, this token is enough.
 
 If you want to get a token via Socialite/OAuth authentication, you also need to set the callback URL.
