@@ -5,6 +5,19 @@ Basic client
 
 Tokens can be obtained on Socialite or through the Threads tester token generator tool.
 
+### Token Types
+
+There are two types of tokens in the Threads API:
+
+- **Short-lived tokens**: Obtained through Socialite OAuth flow, valid for a limited time
+- **Long-lived tokens**: Valid for 60-90 days, required for API usage
+
+Short-lived tokens must be converted to long-lived tokens using `exchangeToken()`. Long-lived tokens can be refreshed to extend their validity, allowing continuous usage when properly maintained.
+
+Threads tester tokens are generated as long-lived tokens by default, so Socialite is not required for single-user scenarios.
+
+**Important**: Long-lived tokens require periodic refresh and cannot be stored permanently in `.env` files. Store them in a database or cache with proper refresh mechanisms.
+
 ## Response
 
 The API results are returned as an `Illuminate\Http\Client\Response` object,
@@ -18,6 +31,15 @@ $response['id'];
 ```
 
 ## Post to Threads
+
+### Two-Phase Publishing Process
+
+Threads API uses a two-phase process for content publishing:
+
+1. **Create**: Upload content (text, image, video) to get a media container ID
+2. **Publish**: Make the content publicly visible using the container ID
+
+This two-phase approach enables advanced features like carousel posts with multiple media items.
 
 ### Text
 
@@ -71,6 +93,15 @@ $id = Threads::createImage(url: 'https://.../cat.png', text: 'test')->json('id')
 Threads::publish($id);
 ```
 
+**Note**: Images and videos require publicly accessible URLs. Direct file uploads are not supported. For local files, use Laravel's Storage facade:
+
+```php
+use Illuminate\Support\Facades\Storage;
+
+$id = Threads::createImage(url: Storage::url('cat.png'), text: 'test')->json('id');
+Threads::publish($id);
+```
+
 ### Video
 
 ```php
@@ -82,15 +113,32 @@ $id = Threads::createVideo(url: 'https://.../dog.mov', text: 'test')->json('id')
 Threads::publish($id);
 ```
 
+**Video Processing**: Videos require processing time before publishing. It's recommended to wait 30 seconds before publishing video content:
+
+```php
+use Illuminate\Support\Facades\Storage;
+
+$id = Threads::createVideo(url: Storage::url('dog.mov'), text: 'test')->json('id');
+Threads::publish($id, sleep: 30); // Wait 30 seconds before publishing
+```
+
+Alternative approaches:
+- Use `Threads::status($id)` to check processing status
+- Implement queue-based delayed publishing
+- Handle processing in background jobs
+
 ### Carousel
+
+Carousel posts allow combining multiple images and videos in a single post. The two-phase publishing process enables this functionality by creating individual media containers first, then combining them:
 
 ```php
 use Revolution\Threads\Facades\Threads;
+use Illuminate\Support\Facades\Storage;
 
 Threads::token($token);
 
-$id1 = Threads::createImage(url: 'https://.../cat1.png', is_carousel: true)['id'];
-$id2 = Threads::createImage(url: 'https://.../cat2.png', is_carousel: true)['id'];
+$id1 = Threads::createImage(url: Storage::url('cat1.png'), is_carousel: true)['id'];
+$id2 = Threads::createImage(url: Storage::url('cat2.png'), is_carousel: true)['id'];
 $id = Threads::createCarousel(children: [$id1, $id2], text: 'test')['id'];
 Threads::publish($id);
 ```
@@ -128,6 +176,20 @@ $posts = Threads::token($token)->posts(limit: 30)->json();
 //    ],
 //]
 ```
+
+### Working with Post Data
+
+```php
+$posts = Threads::token($token)->posts(limit: 30);
+$posts->each(function (array $post) {
+    $text = $post['text'] ?? ''; // Handle missing fields
+    // or use Arr::get($post, 'text') for safer access
+});
+```
+
+**Important**: Post data structure varies by content type. Image-only posts may not include a `text` field, and other fields may be missing depending on the post type. Always check for field existence or use safe access methods.
+
+**Pagination**: Default limit is 25 posts, maximum is 100. Use the `limit` parameter to control the number of results returned.
 
 ## Get posts from specified user
 
@@ -209,6 +271,31 @@ $recentResults = Threads::token($token)->search(q: 'laravel', type: SearchType::
 ```
 
 **Note:** The keyword search API requires the `threads_keyword_search` permission scope, which is included by default in the Socialite provider.
+
+## Token Management
+
+### Refreshing Long-lived Tokens
+
+Long-lived tokens should be refreshed periodically to maintain access. This can be done on each use or via scheduled tasks:
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$newToken = Threads::token($user->threads_token)->refreshToken()['access_token'] ?? null;
+if ($newToken) {
+    $user->update(['threads_token' => $newToken]);
+}
+```
+
+### Token Exchange (Socialite Integration)
+
+Convert short-lived tokens from Socialite to long-lived tokens:
+
+```php
+use Revolution\Threads\Facades\Threads;
+
+$longToken = Threads::exchangeToken($shortToken, config('services.threads.client_secret'))['access_token'];
+```
 
 ## Macroable
 
