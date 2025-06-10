@@ -15,6 +15,8 @@ use Revolution\Threads\Contracts\Factory;
 use Revolution\Threads\Enums\MediaType;
 use Revolution\Threads\Enums\SearchType;
 
+use function Illuminate\Support\enum_value;
+
 class ThreadsClient implements Factory
 {
     use Conditionable;
@@ -196,14 +198,14 @@ class ThreadsClient implements Factory
             ->delete($id);
     }
 
-    public function search(string $q, string $type = SearchType::TOP->name, ?array $fields = null): Response
+    public function search(string $q, string|SearchType $type = SearchType::TOP, ?array $fields = null): Response
     {
         $fields ??= self::POST_DEFAULT_FIELDS;
 
         return $this->http()
             ->get('keyword_search', [
                 'q' => $q,
-                'search_type' => $type,
+                'search_type' => enum_value($type),
                 'fields' => Arr::join($fields, ','),
             ]);
     }
