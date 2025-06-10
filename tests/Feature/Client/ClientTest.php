@@ -209,7 +209,7 @@ class ClientTest extends TestCase
             ->whenEmpty(Http::response());
 
         $res = Threads::token('token')
-            ->search(q: 'test query', type: SearchType::RECENT->name)
+            ->search(q: 'test query', type: SearchType::RECENT)
             ->json();
 
         $this->assertIsArray($res);
