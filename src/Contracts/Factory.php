@@ -97,7 +97,7 @@ interface Factory
      *
      * @return Response{data: array<array-key, string>, paging: array}
      */
-    public function search(string $q, string $type = SearchType::TOP->name, ?array $fields = null): Response;
+    public function search(string $q, string|SearchType $type = SearchType::TOP, ?array $fields = null): Response;
 
     /**
      * Publishing status.
