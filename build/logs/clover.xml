@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1749791355">
+  <project timestamp="1749791355" name="Clover Coverage">
+    <file name="/home/runner/work/laravel-threads/laravel-threads/src/Contracts/Factory.php">
+      <metrics loc="130" ncloc="51" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="Revolution\Threads\Enums">
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Enums/MediaType.php">
+        <class name="Revolution\Threads\Enums\MediaType" namespace="Revolution\Threads\Enums">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="14" ncloc="14" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Enums/ReplyControl.php">
+        <class name="Revolution\Threads\Enums\ReplyControl" namespace="Revolution\Threads\Enums">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="13" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Enums/SearchType.php">
+        <class name="Revolution\Threads\Enums\SearchType" namespace="Revolution\Threads\Enums">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Revolution\Threads\Facades">
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Facades/Threads.php">
+        <class name="Revolution\Threads\Facades\Threads" namespace="Revolution\Threads\Facades">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="23" type="method" name="getFacadeAccessor" visibility="protected" complexity="1" crap="1" count="19"/>
+        <line num="25" type="stmt" count="19"/>
+        <metrics loc="28" ncloc="20" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
+    </package>
+    <package name="Revolution\Threads\Notifications">
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Notifications/ThreadsChannel.php">
+        <class name="Revolution\Threads\Notifications\ThreadsChannel" namespace="Revolution\Threads\Notifications">
+          <metrics complexity="5" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="11" elements="13" coveredelements="11"/>
+        </class>
+        <line num="13" type="method" name="send" visibility="public" complexity="5" crap="5.01" count="4"/>
+        <line num="16" type="stmt" count="4"/>
+        <line num="18" type="stmt" count="4"/>
+        <line num="22" type="stmt" count="4"/>
+        <line num="24" type="stmt" count="4"/>
+        <line num="26" type="stmt" count="4"/>
+        <line num="27" type="stmt" count="1"/>
+        <line num="28" type="stmt" count="3"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="34" type="stmt" count="4"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="4"/>
+        <metrics loc="41" ncloc="39" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="11" elements="13" coveredelements="11"/>
+      </file>
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Notifications/ThreadsMessage.php">
+        <class name="Revolution\Threads\Notifications\ThreadsMessage" namespace="Revolution\Threads\Notifications">
+          <metrics complexity="5" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="13" coveredelements="13"/>
+        </class>
+        <line num="22" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="24" type="stmt" count="7"/>
+        <line num="26" type="method" name="create" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="28" type="stmt" count="7"/>
+        <line num="31" type="method" name="withImage" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="35" type="stmt" count="2"/>
+        <line num="38" type="method" name="withVideo" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="40" type="stmt" count="2"/>
+        <line num="41" type="stmt" count="2"/>
+        <line num="43" type="stmt" count="2"/>
+        <line num="46" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <metrics loc="51" ncloc="51" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="13" coveredelements="13"/>
+      </file>
+    </package>
+    <package name="Revolution\Threads\Socialite">
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Socialite/ThreadsProvider.php">
+        <class name="Revolution\Threads\Socialite\ThreadsProvider" namespace="Revolution\Threads\Socialite">
+          <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="24" coveredelements="24"/>
+        </class>
+        <line num="37" type="method" name="getAuthUrl" visibility="protected" complexity="1" crap="1" count="5"/>
+        <line num="39" type="stmt" count="5"/>
+        <line num="41" type="stmt" count="5"/>
+        <line num="47" type="method" name="getTokenUrl" visibility="protected" complexity="1" crap="1" count="5"/>
+        <line num="49" type="stmt" count="5"/>
+        <line num="55" type="method" name="getUserByToken" visibility="protected" complexity="1" crap="1" count="6"/>
+        <line num="57" type="stmt" count="6"/>
+        <line num="58" type="stmt" count="6"/>
+        <line num="59" type="stmt" count="6"/>
+        <line num="60" type="stmt" count="6"/>
+        <line num="61" type="stmt" count="6"/>
+        <line num="62" type="stmt" count="6"/>
+        <line num="63" type="stmt" count="6"/>
+        <line num="64" type="stmt" count="6"/>
+        <line num="65" type="stmt" count="6"/>
+        <line num="67" type="stmt" count="6"/>
+        <line num="73" type="method" name="mapUserToObject" visibility="protected" complexity="1" crap="1" count="5"/>
+        <line num="75" type="stmt" count="5"/>
+        <line num="76" type="stmt" count="5"/>
+        <line num="77" type="stmt" count="5"/>
+        <line num="78" type="stmt" count="5"/>
+        <line num="79" type="stmt" count="5"/>
+        <line num="80" type="stmt" count="5"/>
+        <line num="81" type="stmt" count="5"/>
+        <metrics loc="84" ncloc="58" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="24" coveredelements="24"/>
+      </file>
+    </package>
+    <package name="Revolution\Threads">
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/ThreadsClient.php">
+        <class name="Revolution\Threads\ThreadsClient" namespace="Revolution\Threads">
+          <metrics complexity="21" methods="20" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="112" coveredstatements="102" elements="132" coveredelements="121"/>
+        </class>
+        <line num="60" type="method" name="token" visibility="public" complexity="1" crap="1" count="20"/>
+        <line num="62" type="stmt" count="20"/>
+        <line num="64" type="stmt" count="20"/>
+        <line num="67" type="method" name="baseUrl" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="74" type="method" name="apiVersion" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="81" type="method" name="profiles" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="83" type="stmt" count="2"/>
+        <line num="84" type="stmt" count="2"/>
+        <line num="85" type="stmt" count="2"/>
+        <line num="86" type="stmt" count="2"/>
+        <line num="87" type="stmt" count="2"/>
+        <line num="88" type="stmt" count="2"/>
+        <line num="90" type="stmt" count="2"/>
+        <line num="91" type="stmt" count="2"/>
+        <line num="92" type="stmt" count="2"/>
+        <line num="93" type="stmt" count="2"/>
+        <line num="96" type="method" name="posts" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="98" type="stmt" count="1"/>
+        <line num="100" type="stmt" count="1"/>
+        <line num="101" type="stmt" count="1"/>
+        <line num="102" type="stmt" count="1"/>
+        <line num="103" type="stmt" count="1"/>
+        <line num="104" type="stmt" count="1"/>
+        <line num="105" type="stmt" count="1"/>
+        <line num="106" type="stmt" count="1"/>
+        <line num="107" type="stmt" count="1"/>
+        <line num="108" type="stmt" count="1"/>
+        <line num="111" type="method" name="single" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="113" type="stmt" count="1"/>
+        <line num="115" type="stmt" count="1"/>
+        <line num="116" type="stmt" count="1"/>
+        <line num="117" type="stmt" count="1"/>
+        <line num="118" type="stmt" count="1"/>
+        <line num="121" type="method" name="replies" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="123" type="stmt" count="0"/>
+        <line num="125" type="stmt" count="0"/>
+        <line num="126" type="stmt" count="0"/>
+        <line num="127" type="stmt" count="0"/>
+        <line num="128" type="stmt" count="0"/>
+        <line num="129" type="stmt" count="0"/>
+        <line num="130" type="stmt" count="0"/>
+        <line num="131" type="stmt" count="0"/>
+        <line num="132" type="stmt" count="0"/>
+        <line num="133" type="stmt" count="0"/>
+        <line num="136" type="method" name="publish" visibility="public" complexity="2" crap="2" count="4"/>
+        <line num="138" type="stmt" count="4"/>
+        <line num="139" type="stmt" count="1"/>
+        <line num="142" type="stmt" count="4"/>
+        <line num="143" type="stmt" count="4"/>
+        <line num="144" type="stmt" count="4"/>
+        <line num="145" type="stmt" count="4"/>
+        <line num="148" type="method" name="createText" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="150" type="stmt" count="3"/>
+        <line num="151" type="stmt" count="3"/>
+        <line num="152" type="stmt" count="3"/>
+        <line num="153" type="stmt" count="3"/>
+        <line num="154" type="stmt" count="3"/>
+        <line num="157" type="method" name="createImage" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="159" type="stmt" count="2"/>
+        <line num="160" type="stmt" count="2"/>
+        <line num="161" type="stmt" count="2"/>
+        <line num="162" type="stmt" count="2"/>
+        <line num="163" type="stmt" count="2"/>
+        <line num="164" type="stmt" count="2"/>
+        <line num="165" type="stmt" count="2"/>
+        <line num="168" type="method" name="createVideo" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="170" type="stmt" count="2"/>
+        <line num="171" type="stmt" count="2"/>
+        <line num="172" type="stmt" count="2"/>
+        <line num="173" type="stmt" count="2"/>
+        <line num="174" type="stmt" count="2"/>
+        <line num="175" type="stmt" count="2"/>
+        <line num="176" type="stmt" count="2"/>
+        <line num="179" type="method" name="createCarousel" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="181" type="stmt" count="1"/>
+        <line num="182" type="stmt" count="1"/>
+        <line num="183" type="stmt" count="1"/>
+        <line num="184" type="stmt" count="1"/>
+        <line num="185" type="stmt" count="1"/>
+        <line num="186" type="stmt" count="1"/>
+        <line num="189" type="method" name="repost" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="191" type="stmt" count="1"/>
+        <line num="192" type="stmt" count="1"/>
+        <line num="195" type="method" name="delete" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="197" type="stmt" count="1"/>
+        <line num="198" type="stmt" count="1"/>
+        <line num="201" type="method" name="search" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="203" type="stmt" count="2"/>
+        <line num="205" type="stmt" count="2"/>
+        <line num="206" type="stmt" count="2"/>
+        <line num="207" type="stmt" count="2"/>
+        <line num="208" type="stmt" count="2"/>
+        <line num="209" type="stmt" count="2"/>
+        <line num="210" type="stmt" count="2"/>
+        <line num="213" type="method" name="status" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="215" type="stmt" count="1"/>
+        <line num="216" type="stmt" count="1"/>
+        <line num="217" type="stmt" count="1"/>
+        <line num="218" type="stmt" count="1"/>
+        <line num="220" type="stmt" count="1"/>
+        <line num="221" type="stmt" count="1"/>
+        <line num="222" type="stmt" count="1"/>
+        <line num="223" type="stmt" count="1"/>
+        <line num="226" type="method" name="quota" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="228" type="stmt" count="1"/>
+        <line num="229" type="stmt" count="1"/>
+        <line num="230" type="stmt" count="1"/>
+        <line num="231" type="stmt" count="1"/>
+        <line num="233" type="stmt" count="1"/>
+        <line num="234" type="stmt" count="1"/>
+        <line num="235" type="stmt" count="1"/>
+        <line num="236" type="stmt" count="1"/>
+        <line num="239" type="method" name="exchangeToken" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="241" type="stmt" count="1"/>
+        <line num="242" type="stmt" count="1"/>
+        <line num="243" type="stmt" count="1"/>
+        <line num="244" type="stmt" count="1"/>
+        <line num="245" type="stmt" count="1"/>
+        <line num="246" type="stmt" count="1"/>
+        <line num="249" type="method" name="refreshToken" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="251" type="stmt" count="1"/>
+        <line num="252" type="stmt" count="1"/>
+        <line num="253" type="stmt" count="1"/>
+        <line num="254" type="stmt" count="1"/>
+        <line num="255" type="stmt" count="1"/>
+        <line num="258" type="method" name="http" visibility="private" complexity="1" crap="1" count="18"/>
+        <line num="260" type="stmt" count="18"/>
+        <line num="261" type="stmt" count="18"/>
+        <metrics loc="264" ncloc="264" classes="1" methods="20" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="112" coveredstatements="102" elements="132" coveredelements="121"/>
+      </file>
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/ThreadsServiceProvider.php">
+        <class name="Revolution\Threads\ThreadsServiceProvider" namespace="Revolution\Threads">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+        </class>
+        <line num="15" type="method" name="register" visibility="public" complexity="1" crap="1" count="42"/>
+        <line num="17" type="stmt" count="42"/>
+        <line num="20" type="method" name="boot" visibility="public" complexity="1" crap="1" count="42"/>
+        <line num="22" type="stmt" count="42"/>
+        <metrics loc="25" ncloc="25" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </file>
+    </package>
+    <package name="Revolution\Threads\Traits">
+      <file name="/home/runner/work/laravel-threads/laravel-threads/src/Traits/WithThreads.php">
+        <class name="Revolution\Threads\Traits\WithThreads" namespace="Revolution\Threads\Traits">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="4" coveredelements="4"/>
+        </class>
+        <line num="12" type="method" name="threads" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="14" type="stmt" count="1"/>
+        <line num="15" type="stmt" count="1"/>
+        <line num="16" type="stmt" count="1"/>
+        <metrics loc="21" ncloc="21" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="4" coveredelements="4"/>
+      </file>
+    </package>
+    <metrics files="11" loc="683" ncloc="568" classes="7" methods="34" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="158" coveredstatements="147" elements="192" coveredelements="179"/>
+  </project>
+</coverage>
