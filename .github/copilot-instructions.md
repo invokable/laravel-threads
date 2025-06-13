@@ -109,7 +109,7 @@ docs/
 **Notification System:**
 - `ThreadsChannel::send()`: Processes notifications and dispatches to Threads
 - `ThreadsMessage::create()`: Factory method for message construction
-- `ThreadsMessage::withImage()`, `ThreadsMessage::withVideo()`: Fluent media attachment
+- `ThreadsMessage::withImage()`, `ThreadsMessage::withVideo()`: Fluent media attachment methods
 
 ### CI/CD Pipeline
 

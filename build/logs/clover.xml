@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1749791355">
-  <project timestamp="1749791355" name="Clover Coverage">
+<coverage generated="1749791627">
+  <project timestamp="1749791627" name="Clover Coverage">
     <file name="/home/runner/work/laravel-threads/laravel-threads/src/Contracts/Factory.php">
       <metrics loc="130" ncloc="51" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
