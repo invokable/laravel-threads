@@ -10,8 +10,8 @@ https://developers.facebook.com/docs/threads
 The Threads API does not provide a full-featured SNS client API, so it is recommended to only use Socialite for OAuth authentication and the notification function.
 
 ## Requirements
-- PHP >= 8.2
-- Laravel >= 11.0
+- PHP >= 8.3
+- Laravel >= 12.0
 
 ## Installation
 
