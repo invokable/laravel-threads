@@ -47,6 +47,20 @@ class SocialiteTest extends TestCase
         $this->assertEquals('access_token_123', $user->token);
     }
 
+    public function test_user_with_null_avatar()
+    {
+        Socialite::fake('threads', (new User)->map([
+            'id' => '111222333444555666',
+            'nickname' => 'testuser3',
+            'name' => 'Test User 3',
+            'avatar' => null,
+        ]));
+
+        $user = Socialite::driver('threads')->user();
+
+        $this->assertNull($user->getAvatar());
+    }
+
     public function test_scopes_configuration()
     {
         $provider = Socialite::driver('threads');
